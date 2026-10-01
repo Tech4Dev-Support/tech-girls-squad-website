@@ -1,10 +1,12 @@
-import Image from "next/image";
+
 
 export default function Home() {
   return (
     <>
 
-      Text
+      <button className="bg-primary font-fredoka text-background w-fit">
+        Get Started
+      </button>
     </>
   );
 }

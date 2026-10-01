@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
 :root {
+  /* Base */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #333333;
+
+  /* Brand */
+  --primary: #9e005d;
+  --primary-foreground: #ffffff;
+
+  /* Dark */
+  --dark: #000000;
+  --dark-foreground: #ffffff;
+
+  /* Section */
+  --section: #f2ebdf;
+
+  /* Accents */
+  --accent-orange: #faaf3a;
+  --accent-blue: #bbf0ff;
+  --accent-pink: #ffdae8;
+
+  /* UI */
+  --border: #e5e5e5;
 }
 
 @theme inline {
+  /* Base */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #000000;
-  }
+  /* Brand */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* Dark */
+  --color-dark: var(--dark);
+  --color-dark-foreground: var(--dark-foreground);
+
+  /* Sections */
+  --color-section: var(--section);
+
+  /* Accents */
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-pink: var(--accent-pink);
+
+  /* UI */
+  --color-border: var(--border);
+
+  /* Fonts */
+  --font-fredoka: var(--font-fredoka);
+  --font-manrope: var(--font-manrope);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope);
 }
