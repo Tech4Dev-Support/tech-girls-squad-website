@@ -1,12 +1,12 @@
+import Hero from "@/components/Hero";
+import TheGap from "@/components/TheGap";
 
 
 export default function Home() {
   return (
     <>
-
-      <button className="bg-primary font-fredoka text-background w-fit">
-        Get Started
-      </button>
+      <Hero />
+      <TheGap />
     </>
   );
 }
