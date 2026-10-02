@@ -4,6 +4,7 @@
   /* Base */
   --background: #ffffff;
   --foreground: #333333;
+  --dark-gray: #333333;
 
   /* Brand */
   --primary: #9e005d;
@@ -29,6 +30,7 @@
   /* Base */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-dark-gray: var(--dark-gray);
 
   /* Brand */
   --color-primary: var(--primary);
@@ -59,3 +61,17 @@ body {
   color: var(--foreground);
   font-family: var(--font-manrope);
 }
+
+/* @keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+} */
+
