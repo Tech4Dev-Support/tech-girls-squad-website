@@ -56,6 +56,10 @@
   --font-manrope: var(--font-manrope);
 }
 
+html {
+  scroll-behavior: smooth !important;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
