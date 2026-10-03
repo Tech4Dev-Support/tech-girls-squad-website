@@ -62,16 +62,18 @@ body {
   font-family: var(--font-manrope);
 }
 
-/* @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+/* Swiper pagination button styles */
+.swiper-pagination-bullet {
+  background: #000000 !important;
+  opacity: 1;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-} */
+.swiper-pagination-bullet-active {
+  background: #000000 !important;
+  opacity: 1;
+}
 
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 35px;
+}

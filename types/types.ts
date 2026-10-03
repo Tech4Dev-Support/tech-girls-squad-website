@@ -10,3 +10,12 @@ export interface Stories_interface {
     publication_year?: number,
     bg_color: string
 }
+
+
+
+export interface Ways_To_Help_interface {
+    heading: string,
+    content: string,
+    buttonText: string,
+    spotColor: string
+}
