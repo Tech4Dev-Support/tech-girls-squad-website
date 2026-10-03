@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
     return (
-        <section className="w-full bg-background min-h-svh relative "  >
+        <section className="w-full bg-background min-h-[110svh] md:min-h-svh relative "  >
 
             <Image
                 fill
@@ -16,7 +16,7 @@ export default function Hero() {
                 className="w-full h-full absolute object-center object-cover inset-0 z-0 " />
 
 
-            <div className="bg-[#00000080] h-full w-full absolute inset-0 z-10  flex flex-col items-start justify-center px-4 md:px-16  " >
+            <div className="bg-[#00000080] h-full w-full absolute inset-0 z-10  flex flex-col items-start justify-center px-4 md:px-16   " >
 
 
                 <div className="w-full max-w-208.75 flex flex-col items-start gap-8" >
