@@ -28,3 +28,12 @@ export interface Bring_it_to_life_data_interface {
     paragraph: string,
     link_text: string
 }
+
+export interface Impact_Stat_interface {
+    id: string;
+    value: number;
+    suffix: string;
+    label: string;
+    bgColor: string;
+    icon: string;
+}
