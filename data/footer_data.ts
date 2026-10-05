@@ -35,3 +35,33 @@ export const footer_get_involved_data = [
         path: "/"
     },
 ]
+
+
+
+export const footer_social_links = [
+    {
+        url: "https://www.instagram.com/Tech4Dev",
+        icon: "",
+        name: "Instagram"
+    },
+    {
+        url: "https://x.com/Tech4DevHQ",
+        icon: "",
+        name: "X"
+    },
+    {
+        url: "https://www.facebook.com/Tech4DevHQ/",
+        icon: "",
+        name: "Facebook"
+    },
+    {
+        url: "https://www.linkedin.com/school/tech4dev/",
+        icon: "",
+        name: "LinkedIn"
+    },
+    {
+        url: "https://www.youtube.com/@tech4devhq618",
+        icon: "",
+        name: "YouTube"
+    }
+]
