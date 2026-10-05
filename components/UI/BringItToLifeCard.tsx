@@ -16,12 +16,12 @@ export default function BringItToLifeCard({ data }: BringItToLifeCardProps) {
          hover:scale-110 duration-200 ease-in-out group
         "  >
 
-            <div className="h-[47%] w-full overflow-hidden" >
+            <div className="h-[47%] w-full overflow-hidden bg-dark" >
 
                 <Image
                     src={data.image}
                     alt={`image`}
-                    height={1000} width={1000}
+                    height={1500} width={1500}
                     className=" h-full w-full object-center object-cover "
                 />
 
