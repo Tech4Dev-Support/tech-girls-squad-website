@@ -1,3 +1,4 @@
+import BringItToLife from "@/components/BringItToLIfe";
 import FourWays from "@/components/FourWays";
 import Hero from "@/components/Hero";
 import Stories from "@/components/Stories";
@@ -9,6 +10,7 @@ export default function Home() {
     <>
       <Hero />
       <TheGap />
+      <BringItToLife />
       <Stories />
       <FourWays />
     </>
