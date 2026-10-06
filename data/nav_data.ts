@@ -4,22 +4,22 @@
 export const navlinks = [
     {
         label: "About",
-        path: "#"
+        path: "#about"
     },
 
     {
         label: "The Books",
-        path: "#"
+        path: "#the_books"
     },
 
     {
         label: "Impact",
-        path: "#"
+        path: "#impact"
     },
 
     {
         label: "Get Involved",
-        path: "#"
+        path: "#get_involved"
     },
 
 ]

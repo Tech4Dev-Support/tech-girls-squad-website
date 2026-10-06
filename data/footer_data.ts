@@ -10,15 +10,15 @@ import { FooterSocialLink } from "@/types/types"
 export const footer_explore_data = [
     {
         label: "About",
-        path: "/"
+        path: "#about"
     },
     {
         label: "The Books",
-        path: "/"
+        path: "#the_books"
     },
     {
         label: "Our Impact",
-        path: "/"
+        path: "#impact"
     }
 ]
 
