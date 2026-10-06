@@ -93,6 +93,7 @@ export default function ImpactStats() {
 
     return (
         <section
+            id="impact"
             ref={sectionRef}
             className="w-full bg-black py-16 sm:py-20 px-4 sm:px-8 md:px-16 overflow-hidden"
         >
@@ -115,9 +116,9 @@ export default function ImpactStats() {
                             style={{ backgroundColor: stat.bgColor }}
                             className="relative overflow-hidden rounded-[16px] p-6 sm:p-8 flex flex-col justify-between min-h-[220px] lg:min-h-[268px] transition-transform duration-300 hover:-translate-y-1.5 cursor-pointer shadow-sm group"
                         >
-                            <div className="absolute -top-10 -right-10 sm:-top-12 sm:-right-12 w-40 h-40 sm:w-45 sm:h-45 rounded-full border-[14px] sm:border-[24px] border-white/50 bg-transparent pointer-events-none transition-transform duration-500 group-hover:scale-105" />  
+                            <div className="absolute -top-10 -right-10 sm:-top-12 sm:-right-12 w-40 h-40 sm:w-45 sm:h-45 rounded-full border-[14px] sm:border-[24px] border-white/50 bg-transparent pointer-events-none transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-10 shrink-0">
-                                {renderIcon(stat.icon)}  
+                                {renderIcon(stat.icon)}
                             </div>
                             <div className="relative z-10 flex flex-col items-start justify-center flex-1  pt-2">
                                 <h3
