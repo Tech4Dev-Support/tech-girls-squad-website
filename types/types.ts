@@ -1,3 +1,4 @@
+import { ComponentType, SVGProps } from "react";
 
 
 
@@ -37,3 +38,12 @@ export interface Impact_Stat_interface {
     bgColor: string;
     icon: string;
 }
+
+
+type SocialIcon = ComponentType<SVGProps<SVGSVGElement>>;
+
+export interface FooterSocialLink {
+    url: string;
+    icon: SocialIcon;
+    name: string;
+};

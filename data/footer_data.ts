@@ -1,3 +1,9 @@
+import FacebookIcon from "@/components/icons/FacebookIcon";
+import InstagramIcon from "@/components/icons/InstagramIcon";
+import LinkedInIcon from "@/components/icons/LinkedInIcon";
+import XIcon from "@/components/icons/XIcon";
+import YouTubeIcon from "@/components/icons/YouTubeIcon";
+import { FooterSocialLink } from "@/types/types"
 
 
 
@@ -38,30 +44,30 @@ export const footer_get_involved_data = [
 
 
 
-export const footer_social_links = [
+export const footer_social_links: FooterSocialLink[] = [
     {
         url: "https://www.instagram.com/Tech4Dev",
-        icon: "",
-        name: "Instagram"
+        icon: InstagramIcon,
+        name: "Instagram",
     },
     {
         url: "https://x.com/Tech4DevHQ",
-        icon: "",
-        name: "X"
+        icon: XIcon,
+        name: "X",
     },
     {
         url: "https://www.facebook.com/Tech4DevHQ/",
-        icon: "",
-        name: "Facebook"
+        icon: FacebookIcon,
+        name: "Facebook",
     },
     {
         url: "https://www.linkedin.com/school/tech4dev/",
-        icon: "",
-        name: "LinkedIn"
+        icon: LinkedInIcon,
+        name: "LinkedIn",
     },
     {
         url: "https://www.youtube.com/@tech4devhq618",
-        icon: "",
-        name: "YouTube"
-    }
-]
+        icon: YouTubeIcon,
+        name: "YouTube",
+    },
+];
