@@ -114,9 +114,9 @@ export default function ImpactStats() {
                                 cardsRef.current[index] = el;
                             }}
                             style={{ backgroundColor: stat.bgColor }}
-                            className="relative overflow-hidden rounded-[16px] p-6 sm:p-8 flex flex-col justify-between min-h-[220px] lg:min-h-[268px] transition-transform duration-300 hover:-translate-y-1.5 cursor-pointer shadow-sm group"
+                            className="relative overflow-hidden rounded-2xl p-6 sm:p-8 flex flex-col justify-between min-h-55 lg:min-h-67 transition-transform duration-300 hover:-translate-y-1.5 cursor-pointer shadow-sm group"
                         >
-                            <div className="absolute -top-10 -right-10 sm:-top-12 sm:-right-12 w-40 h-40 sm:w-45 sm:h-45 rounded-full border-[14px] sm:border-[24px] border-white/50 bg-transparent pointer-events-none transition-transform duration-500 group-hover:scale-105" />
+                            <div className="absolute -top-10 -right-10 sm:-top-12 sm:-right-12 w-40 h-40 sm:w-45 sm:h-45 rounded-full border-14 sm:border-24 border-white/50 bg-transparent pointer-events-none transition-transform duration-500 group-hover:scale-105" />
                             <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-10 shrink-0">
                                 {renderIcon(stat.icon)}
                             </div>
@@ -127,7 +127,7 @@ export default function ImpactStats() {
                                     }}
                                     className="font-fredoka text-6xl sm:text-7xl lg:text-[100px] font-semibold text-black leading-none tracking-tight"
                                 >
-                                    {stat.value}{stat.suffix}
+                                    0{stat.suffix}
                                 </h3>
                                 <p className="relative z-10 font-manrope text-base sm:text-lg lg:text-[24px]  text-[#333333] mt-5 sm:mt-7 leading-snug">
                                     {stat.label}
