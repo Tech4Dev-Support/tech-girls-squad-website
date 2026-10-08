@@ -8,7 +8,7 @@ export default function Hero() {
 
             <Image
                 fill
-                alt="hero"
+                alt=""
                 aria-hidden="true"
                 priority
                 sizes="100vw"
@@ -21,7 +21,9 @@ export default function Hero() {
 
                 <div className="w-full max-w-208.75 flex flex-col items-start gap-8" >
 
-                    <h1 className="font-fredoka text-4xl md:text-7xl text-background font-bold leading-10 md:leading-20 " >What if the next great African Innovator is a <span className="text-primary " >girl </span>
+                    <h1
+                        id="hero-heading"
+                        className="font-fredoka text-4xl md:text-7xl text-background font-bold leading-10 md:leading-20 " >What if the next great African Innovator is a <span className="text-primary " >girl </span>
                         who just needs the right story? </h1>
 
                     <p className="font-manrope text-background text-base md:text-lg font-medium " >Tech Girls Squad uses engaging stories to introduce girls to STEM and
