@@ -4,6 +4,7 @@ import Image from "next/image";
 import CustomButton from "./UI/CustomButton";
 import { ArrowRight } from "lucide-react";
 import { useModal } from "./ModalContext";
+import Link from "next/link";
 
 export default function Hero() {
     const { openModal } = useModal();
@@ -36,18 +37,20 @@ export default function Hero() {
 
                     <div className="w-full flex flex-col md:flex-row md:items-center gap-4 " >
                         <CustomButton onClick={() => openModal("get-copy")} variant="primary">
-                            Get Volume 1 
+                            Get Volume 1
                         </CustomButton>
 
-                        <CustomButton variant="outline">
-                            Explore the impact
+                        <Link href={"#impact"} className="w-fit" >
+                            <CustomButton variant="outline">
+                                Explore the impact
 
-                            <span
-                                aria-hidden="true"
-                                className="flex size-6 shrink-0 items-center justify-center rounded-full border border-current">
-                                <ArrowRight size={18} strokeWidth={2} />
-                            </span>
-                        </CustomButton>
+                                <span
+                                    aria-hidden="true"
+                                    className="flex size-6 shrink-0 items-center justify-center rounded-full border border-current">
+                                    <ArrowRight size={18} strokeWidth={2} />
+                                </span>
+                            </CustomButton>
+                        </Link>
                     </div>
 
                 </div>
