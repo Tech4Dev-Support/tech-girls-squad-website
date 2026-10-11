@@ -4,7 +4,9 @@ import FourWaysSlider from "./FourWaysSlider";
 
 export default function FourWays() {
     return (
-        <section className="bg-section px-4 md:px-16 py-20 flex flex-col items-start gap-4 " >
+        <section
+            id="get_involved"
+            className="bg-section px-4 md:px-16 py-20 flex flex-col items-start gap-4 " >
             <h2 className="font-fredoka text-3xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18]">
                 Four ways to help more girls discover what's possible
             </h2>

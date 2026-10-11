@@ -1,6 +1,7 @@
-import { footer_explore_data, footer_get_involved_data } from "@/data/footer_data";
+import { footer_explore_data, footer_get_involved_data, footer_social_links } from "@/data/footer_data";
 import Logo from "./UI/Logo";
 import Link from "next/link";
+import YouTubeIcon from "./icons/YouTubeIcon";
 
 
 
@@ -20,7 +21,21 @@ export default function Footer() {
                             An advocacy book by Tech4Dev, delivered through Women Techsters.</p>
 
                         <div className=" w-fit flex items-center gap-2 " >
+                            {footer_social_links.map((social_link, i) => {
 
+                                const Icon = social_link.icon
+
+                                return (
+                                    <Link
+                                        target="_blank"
+                                        className="size-10 rounded-full shrink-0 bg-[#353535] flex items-center justify-center
+                                        "
+                                        key={i}
+                                        href={social_link.url} >
+                                        <Icon />
+                                    </Link>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

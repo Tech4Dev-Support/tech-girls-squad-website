@@ -11,7 +11,7 @@ interface BringItToLifeCardProps {
 
 export default function BringItToLifeCard({ data }: BringItToLifeCardProps) {
     return (
-        <div className="w-full max-w-104  bg-background h-125 flex flex-col items-start rounded-3xl
+        <div className="w-full max-w-80 md:max-w-104  bg-background h-125 flex flex-col items-start rounded-3xl
          shadow-[0px_4px_4px_0px_#0000001A] overflow-hidden cursor-pointer
          hover:scale-110 duration-200 ease-in-out group
         "  >
