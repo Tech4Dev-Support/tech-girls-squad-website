@@ -1,15 +1,17 @@
+"use client";
+
 import { Stories_interface } from "@/types/types"
 import Image from "next/image"
 import CustomButton from "./CustomButton"
-
+import { useModal } from "../ModalContext"
 
 interface StoryCardProps {
     data: Stories_interface,
     index: number
 }
 
-
 export default function StoryCard({ data, index }: StoryCardProps) {
+    const { openModal } = useModal();
     return (
         <div
             style={{
@@ -53,10 +55,10 @@ export default function StoryCard({ data, index }: StoryCardProps) {
 
                 <div className="w-full flex flex-col md:flex-row md:items-center gap-4 mt-3 " >
                     {data.status === "Available" ? (<>
-                        <CustomButton className="w-fit! py-3! px-6! text-sm! md:text-lg! " > Get Volume 1 </CustomButton>
-                        <CustomButton variant="outline" className="w-fit! border-dark! text-dark! py-3! px-6! text-sm! md:text-lg! " > Order for Your School </CustomButton>
+                        <CustomButton onClick={() => openModal("get-copy")} className="w-fit! py-3! px-6! text-sm! md:text-lg! " > Get Volume 1 </CustomButton>
+                        <CustomButton onClick={() => openModal("school")} variant="outline" className="w-fit! border-dark! text-dark! py-3! px-6! text-sm! md:text-lg! " > Order for Your School </CustomButton>
                     </>) : (
-                        <CustomButton variant="outline" className="w-fit! border-dark! text-dark! py-3! px-6! text-sm! md:text-lg! " > Fund the  Next Volume </CustomButton>
+                        <CustomButton onClick={() => openModal("donate")} variant="outline" className="w-fit! border-dark! text-dark! py-3! px-6! text-sm! md:text-lg! " > Fund the  Next Volume </CustomButton>
                     )}
                 </div>
 

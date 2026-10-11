@@ -5,32 +5,25 @@ import CustomButton from "./UI/CustomButton";
 import Logo from "./UI/Logo";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-
-
+import { useModal } from "./ModalContext";
 
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false)
-    const [showMobileMenu, setShowMobileMenu] = useState(false)
-
-
+    const [scrolled, setScrolled] = useState(false);
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const { openModal } = useModal();
 
     // This handles the scroll observer
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20)
-        }
+            setScrolled(window.scrollY > 20);
+        };
 
         window.addEventListener("scroll", handleScroll);
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-
-    }, [])
-
-
-
+    }, []);
 
     // Prevent scrolling when the mobile navbar is open
     useEffect(() => {
@@ -45,50 +38,47 @@ export default function Navbar() {
         };
     }, [showMobileMenu]);
 
-
-
-
-
     return (
         <>
-            <nav className={`
+            <nav
+                className={`
         w-full px-6 md:px-16 py-3.5
         flex items-center justify-between
         fixed top-0 left-0 transition-all duration-300 ease-in-out
 ${scrolled ? "bg-background " : "bg-transparent"}
         z-20
-        `} >
+        `}
+            >
                 <Logo />
 
-
-
-
-                <div className=" w-fit hidden md:flex items-center justify-start  gap-6  " >
-
-                    <ul className="w-fit flex items-center gap-6 "  >
-                        {
-                            navlinks.map((link, i) => (
-                                <li key={i} className={`
+                <div className=" w-fit hidden md:flex items-center justify-start  gap-6  ">
+                    <ul className="w-fit flex items-center gap-6 ">
+                        {navlinks.map((link, i) => (
+                            <li
+                                key={i}
+                                className={`
                             text-base font-semibold
                             font-manrope cursor-pointer  transition-all duration-100 ease-in-out
                             ${scrolled ? "text-dark " : "text-background"}
-                            `} >
-                                    <Link href={link.path} className=" hover:text-primary transition-all duration-200 ease-in-out " >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))
-                        }
+                            `}
+                            >
+                                <Link
+                                    href={link.path}
+                                    className=" hover:text-primary transition-all duration-200 ease-in-out "
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
 
-
-                    <CustomButton variant="primary" >
+                    <CustomButton
+                        onClick={() => openModal("get-copy")}
+                        variant="primary"
+                    >
                         Get Volume 1
                     </CustomButton>
                 </div>
-
-
-
 
                 {/* Menu button */}
                 <button
@@ -122,60 +112,52 @@ ${scrolled ? "bg-background " : "bg-transparent"}
         `}
                     />
                 </button>
-
-
             </nav>
 
-
-
-
-
-
             {/* Mobile menu  */}
-            <div className={`fixed top-0 left-0 bg-white w-[75%]  h-full z-20
+            <div
+                className={`fixed top-0 left-0 bg-white w-[75%]  h-full z-20
             transition-transform duration-300 ease-in-out
             px-4 py-12 flex flex-col gap-14 items-start justify-stretch
                 ${showMobileMenu ? " translate-x-0 " : "-translate-x-full "}
-                 `} >
-
+                 `}
+            >
                 <Logo />
 
-
-
-                <div className=" w-full flex flex-col items-start justify-between  gap-6  h-full max-h-[400px] " >
-
-                    <ul className="w-fit flex flex-col items-start gap-6 "  >
-                        {
-                            navlinks.map((link, i) => (
-                                <li
-                                    onClick={() => setShowMobileMenu(false)}
-                                    key={i} className={`
+                <div className=" w-full flex flex-col items-start justify-between  gap-6  h-full max-h-[400px] ">
+                    <ul className="w-fit flex flex-col items-start gap-6 ">
+                        {navlinks.map((link, i) => (
+                            <li
+                                onClick={() => setShowMobileMenu(false)}
+                                key={i}
+                                className={`
                             text-xl font-semibold
                             font-manrope cursor-pointer  transition-all duration-100 ease-in-out
 text-primary
-                            `} >
-                                    <Link
-                                        href={link.path}
-                                        className=" hover:text-primary transition-all duration-200 ease-in-out " >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))
-                        }
+                            `}
+                            >
+                                <Link
+                                    href={link.path}
+                                    className=" hover:text-primary transition-all duration-200 ease-in-out "
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
 
-
                     <CustomButton
-                        onClick={() => setShowMobileMenu(false)}
+                        onClick={() => {
+                            setShowMobileMenu(false);
+                            openModal("get-copy");
+                        }}
                         className="w-full"
-                        variant="primary" >
+                        variant="primary"
+                    >
                         Get Volume 1
                     </CustomButton>
                 </div>
-
-
             </div>
-
         </>
-    )
-}
+    );
+}
