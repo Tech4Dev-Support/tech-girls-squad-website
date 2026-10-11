@@ -2,6 +2,7 @@ import { Bring_it_to_life_data_interface } from "@/types/types"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useModal } from "../ModalContext"
 
 
 
@@ -10,6 +11,18 @@ interface BringItToLifeCardProps {
 }
 
 export default function BringItToLifeCard({ data }: BringItToLifeCardProps) {
+    const { openModal } = useModal();
+
+
+
+    const handleCardClick = () => {
+        if (data.action === "partner") {
+            openModal("partner");
+        }
+    };
+
+
+
     return (
         <div className="w-full max-w-80 md:max-w-104  bg-background h-125 flex flex-col items-start rounded-3xl
          shadow-[0px_4px_4px_0px_#0000001A] overflow-hidden cursor-pointer
@@ -36,14 +49,28 @@ export default function BringItToLifeCard({ data }: BringItToLifeCardProps) {
                         <p className="font-normal text-sm md:text-base font-manrope " > {data.paragraph} </p>
                     </div>
 
-                    <Link href={"/"}
-                        className="  font-semibold  font-manrope text-base md:text-lg flex items-center justify-start gap-2
-                        group-hover:text-primary text-dark
-                        "
-                    >
-                        {data.link_text}
-                        <ArrowRight size={18} />
-                    </Link>
+                    {data.action === "partner" ? (
+                        <button
+                            type="button"
+                            onClick={handleCardClick}
+                            className="font-semibold font-manrope text-base md:text-lg
+        flex items-center justify-start gap-2
+        group-hover:text-primary text-dark"
+                        >
+                            {data.link_text}
+                            <ArrowRight size={18} />
+                        </button>
+                    ) : (
+                        <Link
+                            href={data.path}
+                            className="font-semibold font-manrope text-base md:text-lg
+        flex items-center justify-start gap-2
+        group-hover:text-primary text-dark"
+                        >
+                            {data.link_text}
+                            <ArrowRight size={18} />
+                        </Link>
+                    )}
                 </div>
 
             </div>

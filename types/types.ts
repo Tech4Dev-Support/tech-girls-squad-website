@@ -27,7 +27,9 @@ export interface Bring_it_to_life_data_interface {
     image: string,
     heading: string,
     paragraph: string,
-    link_text: string
+    link_text: string,
+    path: string,
+    action?: "partner";
 }
 
 export interface Impact_Stat_interface {

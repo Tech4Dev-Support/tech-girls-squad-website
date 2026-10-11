@@ -5,7 +5,6 @@ import { bring_it_to_life_data } from "@/data/bring_it_to_life_data";
 import BringItToLifeCard from "./UI/BringItToLifeCard";
 import gsap from "gsap";
 import { useLayoutEffect, useRef } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 export default function BringItToLife() {

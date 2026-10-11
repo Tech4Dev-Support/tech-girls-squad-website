@@ -1,17 +1,17 @@
 import { footer_explore_data, footer_get_involved_data, footer_social_links } from "@/data/footer_data";
 import Logo from "./UI/Logo";
 import Link from "next/link";
-import YouTubeIcon from "./icons/YouTubeIcon";
+
 
 
 
 
 export default function Footer() {
     return (
-        <footer className="bg-dark px-3.25 pt-20 pb-10 flex  flex-col items-center justify-center gap-20  " >
+        <footer className="bg-dark px-3.25 pt-20 pb-10 flex  flex-col items-center justify-center gap-14 lg:gap-20  " >
 
             {/* top section  */}
-            <div className=" px-4 md:px-16 flex flex-col md:flex-row items-start justify-between gap-14 md:gap-28 w-full  " >
+            <div className=" px-4 lg:px-16 flex flex-col lg:flex-row items-start justify-between gap-14 md:gap-28 w-full  " >
 
                 <div className="w-full max-w-88  flex flex-col items-start gap-8  " >
                     <Logo />
@@ -104,8 +104,8 @@ export default function Footer() {
 
 
             {/* bottom section  */}
-            <div className=" w-full flex flex-col md:flex-row md:items-center justify-between
-              border-t-[0.5px] border-[#A5A5A5] pt-8 gap-5.5 md:gap-12.5 px-3.25
+            <div className=" w-full flex flex-col lg:flex-row lg:items-center justify-between
+              border-t-[0.5px] border-[#A5A5A5] pt-8 gap-5.5 md:gap-10 lg:gap-12.5 px-3.25
                " >
 
                 <h6 className=" text-sm md:text-base font-normal text-[#A5A5A5]  " >Expanding possibilities for African girls.</h6>
