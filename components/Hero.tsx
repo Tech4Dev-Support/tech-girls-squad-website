@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import CustomButton from "./UI/CustomButton";
 import { ArrowRight } from "lucide-react";
+import { useModal } from "./ModalContext";
 
 export default function Hero() {
+    const { openModal } = useModal();
     return (
         <section className="w-full bg-background min-h-[110svh] md:min-h-svh relative "  >
 
@@ -31,8 +35,8 @@ export default function Hero() {
 
 
                     <div className="w-full flex flex-col md:flex-row md:items-center gap-4 " >
-                        <CustomButton variant="primary">
-                            Get Volume 1
+                        <CustomButton onClick={() => openModal("get-copy")} variant="primary">
+                            Get Volume 1 
                         </CustomButton>
 
                         <CustomButton variant="outline">
