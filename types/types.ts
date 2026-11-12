@@ -49,3 +49,10 @@ export interface FooterSocialLink {
     icon: SocialIcon;
     name: string;
 };
+
+
+export interface Gallery_Image_Type {
+    image_url: string,
+    id: string,
+    category: "Advocacy Visits" | "Book Launch"
+}

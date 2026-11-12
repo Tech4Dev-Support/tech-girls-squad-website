@@ -18,6 +18,7 @@ export default function Page() {
                     width={1000}
                     height={1000}
                     className=" w-full object-center object-cover "
+                    priority
                 />
             </div>
 
