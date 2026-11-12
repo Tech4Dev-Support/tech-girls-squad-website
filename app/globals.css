@@ -28,6 +28,9 @@
 
   /* UI */
   --border: #e5e5e5;
+
+  /* buttons */
+  --beige: #fde6c2;
 }
 
 @theme inline {
@@ -51,6 +54,9 @@
   --color-accent-orange: var(--accent-orange);
   --color-accent-blue: var(--accent-blue);
   --color-accent-pink: var(--accent-pink);
+
+  /* buttons */
+  --color-beige: var(--beige);
 
   /* UI */
   --color-border: var(--border);

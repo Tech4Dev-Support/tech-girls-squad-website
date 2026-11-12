@@ -1,3 +1,4 @@
+import GallerySection from "@/components/AdvocacySection";
 import BringItToLife from "@/components/BringItToLIfe";
 import FourWays from "@/components/FourWays";
 import Hero from "@/components/Hero";
@@ -14,6 +15,7 @@ export default function Home() {
       <BringItToLife />
       <Stories />
       <ImpactStats />
+      <GallerySection />
       <FourWays />
     </>
   );
