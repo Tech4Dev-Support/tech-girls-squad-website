@@ -1,4 +1,4 @@
-import GallerySection from "@/components/AdvocacySection";
+import GallerySection from "@/components/Gallery";
 import BringItToLife from "@/components/BringItToLIfe";
 import FourWays from "@/components/FourWays";
 import Hero from "@/components/Hero";

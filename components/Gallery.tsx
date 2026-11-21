@@ -6,6 +6,7 @@ import { Gallery_Image_Type } from "@/types/types";
 import Image from "next/image";
 import gsap from "gsap";
 import { useRef, useState, useEffect } from "react";
+import ImagePreviewer from "./ImagePreviewer";
 
 
 
@@ -13,6 +14,8 @@ export default function GallerySection() {
 
     const [category, setCategory] = useState<Gallery_Image_Type["category"]>("Advocacy Visits")
     const galleryRef = useRef<HTMLDivElement>(null);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null)
+    const [showImage, setShowImage] = useState(false)
 
 
     // The filtered images based on category
@@ -46,6 +49,21 @@ export default function GallerySection() {
             ease: "power2.out",
         });
     }, [category]);
+
+
+
+
+    // Disable scrolling when an image is being viewed
+    useEffect(() => {
+        if (!showImage) return
+
+        const previousOverflow = document.body.style.overflow
+        document.body.style.overflow = "hidden"
+
+        return () => {
+            document.body.style.overflow = previousOverflow
+        }
+    }, [showImage])
 
 
     return (
@@ -100,7 +118,12 @@ ${category === "Advocacy Visits" ? "bg-beige text-dark " : "text-beige bg-transp
 
 
                 {/* 1st card  */}
-                <div className="w-full bg-gray-50 h-full col-span-2 row-span-2 md:row-span-3 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
+                <div
+                    onClick={() => {
+                        setSelectedImage(images[0].id)
+                        setShowImage(true)
+                    }}
+                    className="w-full bg-gray-50 h-full col-span-2 row-span-2 md:row-span-3 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
                     <Image
                         src={images[0].image_url}
                         alt={images[0].category}
@@ -110,7 +133,12 @@ ${category === "Advocacy Visits" ? "bg-beige text-dark " : "text-beige bg-transp
 
 
                 {/* 2nd card */}
-                <div className="w-full bg-gray-50 h-full col-span-2 row-span-2 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group ">
+                <div
+                    onClick={() => {
+                        setSelectedImage(images[1].id)
+                        setShowImage(true)
+                    }}
+                    className="w-full bg-gray-50 h-full col-span-2 row-span-2 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group ">
                     <Image
                         src={images[1].image_url}
                         alt={images[1].category}
@@ -121,7 +149,12 @@ ${category === "Advocacy Visits" ? "bg-beige text-dark " : "text-beige bg-transp
 
 
                 {/* 5th and 6th card */}
-                <div className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 md:row-span-3 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
+                <div
+                    onClick={() => {
+                        setSelectedImage(images[4].id)
+                        setShowImage(true)
+                    }}
+                    className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 md:row-span-3 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
                     <Image
                         src={images[4].image_url}
                         alt={images[4].category}
@@ -131,7 +164,12 @@ ${category === "Advocacy Visits" ? "bg-beige text-dark " : "text-beige bg-transp
 
 
 
-                <div className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 md:row-span-3 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
+                <div
+                    onClick={() => {
+                        setSelectedImage(images[5].id)
+                        setShowImage(true)
+                    }}
+                    className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 md:row-span-3 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
 
                     <Image
                         src={images[5].image_url}
@@ -144,7 +182,12 @@ ${category === "Advocacy Visits" ? "bg-beige text-dark " : "text-beige bg-transp
 
 
                 {/* 3rd and 4th card */}
-                <div className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
+                <div
+                    onClick={() => {
+                        setSelectedImage(images[2].id)
+                        setShowImage(true)
+                    }}
+                    className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group " >
                     <Image
                         src={images[2].image_url}
                         alt={images[2].category}
@@ -152,7 +195,12 @@ ${category === "Advocacy Visits" ? "bg-beige text-dark " : "text-beige bg-transp
                         className="object-cover object-center group-hover:scale-110 duration-400 ease-in-out" />
                 </div>
 
-                <div className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group ">
+                <div
+                    onClick={() => {
+                        setSelectedImage(images[3].id)
+                        setShowImage(true)
+                    }}
+                    className="w-full bg-gray-50 h-full col-span-2 md:col-span-1 row-span-2 rounded-lg md:rounded-2xl relative overflow-hidden  cursor-pointer group ">
                     <Image
                         src={images[3].image_url}
                         alt={images[3].category}
@@ -162,6 +210,16 @@ ${category === "Advocacy Visits" ? "bg-beige text-dark " : "text-beige bg-transp
 
             </div>
 
+
+
+            {showImage && selectedImage !== null && (
+                <ImagePreviewer
+                    setSelectedImage={setSelectedImage}
+                    selectedImage={selectedImage}
+                    images={gallery_images}
+                    closeImage={() => setShowImage(false)}
+                />
+            )}
 
         </section>
     )
