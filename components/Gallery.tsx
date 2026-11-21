@@ -67,7 +67,7 @@ export default function GallerySection() {
 
 
     return (
-        <section className="px-4 md:px-16 py-20 flex flex-col items-center gap-10 ">
+        <section className="px-4 md:px-10 py-20 flex flex-col items-center gap-10 ">
 
             {/* Heading */}
             <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 " >

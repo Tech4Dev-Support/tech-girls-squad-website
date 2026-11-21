@@ -61,7 +61,7 @@ export default function TheGap() {
         <section
             id="about"
             ref={sectionRef}
-            className="w-full bg-background py-12 md:py-16 px-4 sm:px-8 md:px-16 overflow-hidden"
+            className="w-full bg-background py-12 md:py-20 px-4 sm:px-8 md:px-16 overflow-hidden"
         >
             <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12">
 
