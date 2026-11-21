@@ -212,13 +212,12 @@ export async function sendSchoolEnquiry(params: {
   email: string;
   phone?: string;
   numberOfCopies: number | string;
-  city?: string;
-  state?: string;
+  deliveryAddress?: string;
   message?: string | null;
   date?: Date;
 }) {
   const {
-    schoolName, contactPerson, role, email, phone, numberOfCopies, city, state, message, date = new Date()
+    schoolName, contactPerson, role, email, phone, numberOfCopies, deliveryAddress, message, date = new Date()
   } = params;
   const html = `
     <p>
@@ -228,7 +227,7 @@ export async function sendSchoolEnquiry(params: {
       Email: ${esc(email)}<br/>
       Phone: ${esc(phone)}<br/>
       Number of copies: ${esc(numberOfCopies)}<br/>
-      Location: ${esc(city)}, ${esc(state)}<br/>
+      Delivery address: ${esc(deliveryAddress)}<br/>
       ${message ? `Message: ${esc(message)}<br/>` : ''}
       Received: ${esc(formatDate(date))}
     </p>
