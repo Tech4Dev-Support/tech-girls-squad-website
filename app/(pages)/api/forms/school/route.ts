@@ -3,7 +3,7 @@ import { sendSchoolEnquiry } from '@/lib/emailService';
 const str = (v: unknown): string => (typeof v === 'string' ? v.trim() : '');
 const isEmail = (v: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-const REQUIRED = ['schoolName', 'contactPerson', 'role', 'email', 'phone', 'numberOfCopies', 'city', 'state'] as const;
+const REQUIRED = ['schoolName', 'contactPerson', 'role', 'email', 'phone', 'numberOfCopies', 'deliveryAddress'] as const;
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -35,8 +35,7 @@ export async function POST(request: Request) {
       email,
       phone: str(body.phone),
       numberOfCopies,
-      city: str(body.city),
-      state: str(body.state),
+      deliveryAddress: str(body.deliveryAddress),
       message: str(body.message) || null
     });
     return Response.json({ success: true });
