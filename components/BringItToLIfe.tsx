@@ -43,7 +43,7 @@ export default function BringItToLife() {
     return (
         <section
             ref={sectionRef}
-            className="bg-section px-4 md:px-16 pt-12 pb-20 flex flex-col items-center gap-8 overflow-hidden "  >
+            className="bg-section px-4 md:px-16 py-10 md:py-20 flex flex-col items-center gap-8 overflow-hidden "  >
 
             <h2 className="font-fredoka text-3xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18]">
                 How We Bring it to Life

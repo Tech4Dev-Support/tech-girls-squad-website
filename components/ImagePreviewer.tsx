@@ -135,7 +135,7 @@ export default function ImagePreviewer({
                                 onClick={() => setSelectedImage(image.id)}
                                 key={image.id}
                                 className={`
-                                w-30 h-25 border-[3px] rounded-sm
+                                   w-25 h-20   md:w-30 md:h-25 border-[3px] rounded-sm
                                 cursor-pointer flex items-center justify-center overflow-hidden
                                 ${selected_image_object.id === image.id ? "border-[#9E005D]" : "border-[#FFFFFF]"}
                             `}

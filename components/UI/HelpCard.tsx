@@ -27,7 +27,7 @@ export default function HelpCard({ data }: HelpCardProps) {
 
     return (
         <div
-            className=" h-full w-full bg-background rounded-3xl
+            className=" h-[416px] w-full bg-background rounded-3xl
          flex flex-col items-center justify-center
           py-12 md:py-15 px-5 md:px-10 relative overflow-hidden "
         >
@@ -60,4 +60,4 @@ md:-top-15 md:-right-15
             />
         </div>
     );
-}
+}

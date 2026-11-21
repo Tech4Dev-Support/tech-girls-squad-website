@@ -36,7 +36,7 @@ const Slider = () => {
                 className="w-full h-full"
             >
                 {ways_to_help_data.map((data, index) => (
-                    <SwiperSlide key={index} className='h-auto! flex! ' >
+                    <SwiperSlide key={index} className='h-full!   flex! ' >
                         <HelpCard data={data} />
                     </SwiperSlide>
                 ))}

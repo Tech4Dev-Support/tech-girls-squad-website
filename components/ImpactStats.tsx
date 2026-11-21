@@ -95,7 +95,7 @@ export default function ImpactStats() {
         <section
             id="impact"
             ref={sectionRef}
-            className="w-full bg-black py-16 sm:py-20 px-4 sm:px-8 md:px-16 overflow-hidden"
+            className="w-full bg-black py-10 sm:py-20 px-4 sm:px-8 md:px-16 overflow-hidden"
         >
             <div>
                 <div ref={headerRef} className="mb-10 sm:mb-12 md:mb-14">
