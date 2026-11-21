@@ -35,7 +35,7 @@ export default function Hero() {
                         inspire girls to see themselves as creators, innovators, and future leaders.</p>
 
 
-                    <div className="w-full flex flex-col md:flex-row md:items-center gap-4 " >
+                    <div className="w-fit mx-auto md:mx-0 flex flex-col md:flex-row md:items-center gap-4 " >
                         <CustomButton onClick={() => openModal("get-copy")} variant="primary">
                             Get Volume 1
                         </CustomButton>
