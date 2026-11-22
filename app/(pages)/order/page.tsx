@@ -32,7 +32,7 @@ export default function Page() {
                     confirmation to <span className="text-primary" >ebiuwa@gmail.com.</span></p>
 
                 <p className="text-dark font-manrope font-normal text-base md:text-lg " >
-                    Your 2 copies will be dispatched within <span className="text-primary" >3 working days.</span></p>
+                    Your 2 copies will be dispatched within <span className="text-primary" >7 working days.</span></p>
 
 
                 <p className="text-dark font-manrope font-normal text-base md:text-lg " >

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ModalWrapper from "../UI/ModalWrapper";
 import FormWrapper from "./FormWrapper";
 import FormInput from "./FormInput";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { createIdempotencyKey, initializePayment } from "@/lib/api";
 
 interface DonateModalProps {
   isOpen: boolean;
@@ -19,6 +20,13 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
   const [agreedPrivacy, setAgreedPrivacy] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const idempotencyKeyRef = useRef<string>("");
+
+  useEffect(() => {
+    if (isOpen) {
+      idempotencyKeyRef.current = createIdempotencyKey();
+    }
+  }, [isOpen]);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -29,9 +37,11 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = "Invalid email address";
     }
-    const parsedAmount = parseFloat(amount.replace(/,/g, ""));
-    if (!amount || isNaN(parsedAmount) || parsedAmount < 1000) {
+    const parsedAmount = Number(amount.replace(/,/g, "").trim());
+    if (!amount.trim() || !Number.isFinite(parsedAmount) || parsedAmount < 1000) {
       newErrors.amount = "Minimum donation amount is ₦1,000";
+    } else if (!Number.isInteger(parsedAmount)) {
+      newErrors.amount = "Donation amount must be a whole number of naira";
     }
     if (!agreedPrivacy) newErrors.privacy = "You must agree to the Privacy Policy";
 
@@ -39,8 +49,21 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (formData: Record<string, any>) => {
-    return validate();
+  const handleSubmit = async () => {
+    if (!validate()) return false;
+
+    const idempotencyKey =
+      idempotencyKeyRef.current || (idempotencyKeyRef.current = createIdempotencyKey());
+    const donationAmount = Number(amount.replace(/,/g, "").trim());
+
+    return initializePayment({
+      isDonation: true,
+      fullName: fullName.trim(),
+      email: email.trim(),
+      donationAmount,
+      consent: true,
+      idempotencyKey,
+    });
   };
 
   return (
@@ -51,11 +74,9 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
       subtitle="Your support helps put the next Tech Girls Squad story in more girls' hands."
     >
       <FormWrapper
-        formName="fund-the-next-volume"
         onSubmit={handleSubmit}
         submitButtonText="Proceed to Payment"
         isSubmitDisabled={!agreedPrivacy}
-        redirectTo="/donation/success"
       >
         <FormInput
           label="Full name"

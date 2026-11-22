@@ -7,6 +7,7 @@ import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { postJson } from "@/lib/api";
 
 interface SchoolModalProps {
   isOpen: boolean;
@@ -46,8 +47,23 @@ export default function SchoolModal({ isOpen, onClose }: SchoolModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (formData: Record<string, any>) => {
-    return validate();
+  const handleSubmit = async (honeypot: string) => {
+    if (!validate()) return false;
+
+    const res = await postJson<{ success?: boolean }>("/api/forms/school", {
+      schoolName: schoolName.trim(),
+      contactPerson: contactPerson.trim(),
+      role: role.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      numberOfCopies: String(Math.max(1, numCopies)),
+      deliveryAddress: deliveryAddress.trim(),
+      message: message.trim(),
+      consent: true,
+      honeypot,
+    });
+
+    return { ok: res.ok, error: res.error };
   };
 
   return (
@@ -58,10 +74,10 @@ export default function SchoolModal({ isOpen, onClose }: SchoolModalProps) {
       subtitle="Tell us about your school and how many copies you're looking for."
     >
       <FormWrapper
-        formName="order-for-your-school"
         onSubmit={handleSubmit}
         submitButtonText="Place your Order"
         isSubmitDisabled={!agreedPrivacy}
+        showHoneypot
       >
         <FormInput
           label="School name"
@@ -134,7 +150,7 @@ export default function SchoolModal({ isOpen, onClose }: SchoolModalProps) {
           label="Number of Copies"
           required
           type="number"
-          name="numCopies"
+          name="numberOfCopies"
           min={1}
           value={numCopies}
           onChange={(e) => setNumCopies(parseInt(e.target.value) || 1)}

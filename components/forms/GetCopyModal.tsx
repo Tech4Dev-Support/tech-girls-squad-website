@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import ModalWrapper from "../UI/ModalWrapper";
 import FormWrapper from "./FormWrapper";
 import FormInput from "./FormInput";
@@ -9,6 +9,7 @@ import FormToggle from "./FormToggle";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import nigeriaStatesLgas from "@/data/nigeria_states_lgas.json";
+import { createIdempotencyKey, initializePayment } from "@/lib/api";
 
 const PRICE_PER_COPY = 5000;
 
@@ -33,6 +34,13 @@ export default function GetCopyModal({ isOpen, onClose }: GetCopyModalProps) {
 
   
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const idempotencyKeyRef = useRef<string>("");
+
+  useEffect(() => {
+    if (isOpen) {
+      idempotencyKeyRef.current = createIdempotencyKey();
+    }
+  }, [isOpen]);
 
   
   const statesList = useMemo(() => Object.keys(nigeriaStatesLgas), []);
@@ -79,8 +87,26 @@ export default function GetCopyModal({ isOpen, onClose }: GetCopyModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (formData: Record<string, any>) => {
-    return validate();
+  const handleSubmit = async () => {
+    if (!validate()) return false;
+
+    const idempotencyKey =
+      idempotencyKeyRef.current || (idempotencyKeyRef.current = createIdempotencyKey());
+
+    return initializePayment({
+      fullName: fullName.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      copiesForMe: Math.max(1, numCopies),
+      copiesToGift: isGifted ? Math.max(1, giftNumCopies) : 0,
+      country: "Nigeria",
+      state: selectedState,
+      lga: selectedLga,
+      addressLine: deliveryAddress.trim(),
+      landmark: nearestLandmark.trim(),
+      consent: true,
+      idempotencyKey,
+    });
   };
 
   return (
@@ -91,11 +117,9 @@ export default function GetCopyModal({ isOpen, onClose }: GetCopyModalProps) {
       subtitle="Tell us where to send your book."
     >
       <FormWrapper
-        formName="get-your-copy"
         onSubmit={handleSubmit}
         submitButtonText="Proceed to Payment"
         isSubmitDisabled={!agreedPrivacy}
-        redirectTo="/order"
       >
         <FormInput
           label="Number of Copies"
