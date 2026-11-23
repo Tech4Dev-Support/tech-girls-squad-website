@@ -9,6 +9,7 @@ import FormTextarea from "./FormTextarea";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import nigeriaStatesLgas from "@/data/nigeria_states_lgas.json";
+import { postJson } from "@/lib/api";
 
 interface PartnerModalProps {
   isOpen: boolean;
@@ -49,8 +50,22 @@ export default function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (formData: Record<string, any>) => {
-    return validate();
+  const handleSubmit = async (honeypot: string) => {
+    if (!validate()) return false;
+
+    const res = await postJson<{ success?: boolean }>("/api/forms/partner", {
+      fullName: fullName.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      organisation: organization.trim(),
+      country: selectedCountry,
+      stateOrRegion: selectedState,
+      message: message.trim(),
+      consent: true,
+      honeypot,
+    });
+
+    return { ok: res.ok, error: res.error };
   };
 
   return (
@@ -61,10 +76,10 @@ export default function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
       subtitle="Collaborate with us on school outreach, sponsorships, translations, or future volumes."
     >
       <FormWrapper
-        formName="partner-with-us"
         onSubmit={handleSubmit}
         submitButtonText="Send Message"
         isSubmitDisabled={!agreedPrivacy}
+        showHoneypot
       >
         <FormInput
           label="Full name"

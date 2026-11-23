@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import ModalWrapper from "../UI/ModalWrapper";
 import FormWrapper from "./FormWrapper";
 import FormInput from "./FormInput";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { createIdempotencyKey, initializePayment } from "@/lib/api";
 
 const PRICE_PER_COPY = 5000;
 
@@ -22,6 +23,13 @@ export default function GiftCopyModal({ isOpen, onClose }: GiftCopyModalProps) {
   const [agreedPrivacy, setAgreedPrivacy] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const idempotencyKeyRef = useRef<string>("");
+
+  useEffect(() => {
+    if (isOpen) {
+      idempotencyKeyRef.current = createIdempotencyKey();
+    }
+  }, [isOpen]);
 
   const totalAmount = useMemo(() => {
     return Math.max(1, numCopies) * PRICE_PER_COPY;
@@ -43,8 +51,20 @@ export default function GiftCopyModal({ isOpen, onClose }: GiftCopyModalProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (formData: Record<string, any>) => {
-    return validate();
+  const handleSubmit = async () => {
+    if (!validate()) return false;
+
+    const idempotencyKey =
+      idempotencyKeyRef.current || (idempotencyKeyRef.current = createIdempotencyKey());
+
+    return initializePayment({
+      fullName: fullName.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
+      copiesToGift: Math.max(1, numCopies),
+      consent: true,
+      idempotencyKey,
+    });
   };
 
   return (
@@ -55,17 +75,15 @@ export default function GiftCopyModal({ isOpen, onClose }: GiftCopyModalProps) {
       subtitle="Choose how many copies you'd like to gift."
     >
       <FormWrapper
-        formName="gift-a-copy"
         onSubmit={handleSubmit}
         submitButtonText="Proceed to Payment"
         isSubmitDisabled={!agreedPrivacy}
-        redirectTo="/order/gift"
       >
         <FormInput
           label="Number of Copies"
           required
           type="number"
-          name="numCopies"
+          name="giftNumCopies"
           min={1}
           value={numCopies}
           onChange={(e) => setNumCopies(parseInt(e.target.value) || 1)}

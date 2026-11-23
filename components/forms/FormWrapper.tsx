@@ -1,74 +1,69 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import CustomButton from "../UI/CustomButton";
+import type { ApiSubmitResult } from "@/lib/api";
 
 interface FormWrapperProps {
-  formName: string;
-  onSubmit: (formData: Record<string, any>) => Promise<boolean> | boolean;
+  onSubmit: (honeypotValue: string) => Promise<ApiSubmitResult | false> | ApiSubmitResult | false;
   children: React.ReactNode;
   submitButtonText?: string;
   isSubmitDisabled?: boolean;
   className?: string;
-  redirectTo?: string;
+  showHoneypot?: boolean;
+  successTitle?: string;
+  successMessage?: string;
 }
 
 export default function FormWrapper({
-  formName,
   onSubmit,
   children,
   submitButtonText = "Proceed to Payment",
   isSubmitDisabled = false,
   className = "",
-  redirectTo,
+  showHoneypot = false,
+  successTitle = "Thank you!",
+  successMessage = "Your request has been submitted successfully. We have sent details to your email.",
 }: FormWrapperProps) {
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setErrorMessage(null);
-
-    const formElement = e.currentTarget;
-    const formData = new FormData(formElement);
-    const formValues: Record<string, any> = {};
-
-    formData.forEach((val, key) => {
-      formValues[key] = val;
-    });
-
     setIsSubmitting(true);
 
     try {
-      const isValid = await onSubmit(formValues);
-      if (!isValid) {
+      const result = await onSubmit(honeypot);
+
+      if (result === false) {
         setIsSubmitting(false);
         return;
       }
-     
-      const body = new URLSearchParams(formData as any).toString();
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body,
-      });
 
-      if (response.ok) {
-        if (redirectTo) {
-          router.push(redirectTo);
-          return;
-        }
-        setIsSuccess(true);
-      } else {
-        throw new Error("Form submission failed.");
+      if (!result.ok) {
+        setErrorMessage(
+          result.error ||
+            "Something went wrong. Please try again or reach us at techgirlssquad@tech4dev.com"
+        );
+        setIsSubmitting(false);
+        return;
       }
+
+      if (result.redirectUrl) {
+        window.location.assign(result.redirectUrl);
+        return;
+      }
+
+      setIsSuccess(true);
+      setIsSubmitting(false);
     } catch (err) {
       console.error("Submission error:", err);
-      setErrorMessage("Something went wrong. Please try again or reach us at techgirlssquad@tech4dev.com");
-    } finally {
+      setErrorMessage(
+        "Something went wrong. Please try again or reach us at techgirlssquad@tech4dev.com"
+      );
       setIsSubmitting(false);
     }
   };
@@ -79,41 +74,49 @@ export default function FormWrapper({
         <div className="w-14 h-14 bg-[#F9EAF2] text-primary rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
           ✓
         </div>
-        <h3 className="font-fredoka text-2xl font-bold text-dark">Thank you!</h3>
-        <p className="text-sm text-foreground">
-          Your request has been submitted successfully. We have sent details to your email.
-        </p>
+        <h3 className="font-fredoka text-2xl font-bold text-dark">{successTitle}</h3>
+        <p className="text-sm text-foreground">{successMessage}</p>
       </div>
     );
   }
 
   return (
     <form
-      name={formName}
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
+      noValidate
       className={`space-y-4 font-manrope ${className}`}
     >
-      <input type="hidden" name="form-name" value={formName} />
-      <p className="hidden">
-        <label>
-          Don’t fill this out if you’re human: <input name="bot-field" />
-        </label>
-      </p>
+      {showHoneypot && (
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="honeypot">
+            Leave this field empty
+            <input
+              id="honeypot"
+              name="honeypot"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+          </label>
+        </div>
+      )}
 
       {children}
 
       {errorMessage && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 font-manrope">
+        <div
+          role="alert"
+          className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 font-manrope"
+        >
           {errorMessage}
         </div>
       )}
 
       <div className="pt-5">
         <button
-          type="submit" 
+          type="submit"
           disabled={isSubmitDisabled || isSubmitting}
           className={`w-full py-3 px-6 rounded-full font-manrope font-semibold text-sm sm:text-base text-white transition-all duration-200 shadow-sm ${
             isSubmitDisabled || isSubmitting
