@@ -43,23 +43,29 @@ export default function BringItToLife() {
     return (
         <section
             ref={sectionRef}
-            className="bg-section px-4 md:px-16 py-10 md:py-20 flex flex-col items-center gap-8 overflow-hidden "  >
-
-            <h2 className="font-fredoka text-3xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18]">
-                How We Bring it to Life
-            </h2>
+            className="bg-section px-6 md:px-16 pt-7 pb-10 md:pt-14 md:pb-20 flex items-center justify-center overflow-hidden "  >
 
 
-            <div
-                ref={cardsRef} className=" mt-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center justify-items-center gap-9.5 "  >
-                {bring_it_to_life_data.map((data, i) => (
-                    <div
-                        key={i}
-                        className="bring-it-to-life-card w-full"
-                    >
-                        <BringItToLifeCard data={data} />
-                    </div>
-                ))}
+
+            <div className=" bg-a flex flex-col items-start gap-6 md:gap-8 " >
+                <h2 className="font-fredoka text-base md:text-lg font-bold text-primary leading-[1.18]">
+                    How We Bring it to Life
+                </h2>
+
+
+                <div
+                    ref={cardsRef} className=" mt-3
+                     flex flex-col items-start
+                    md:grid md:grid-cols-2 xl:grid-cols-3 place-items-center justify-items-center gap-9.5 "  >
+                    {bring_it_to_life_data.map((data, i) => (
+                        <div
+                            key={i}
+                            className="bring-it-to-life-card w-full"
+                        >
+                            <BringItToLifeCard data={data} />
+                        </div>
+                    ))}
+                </div>
             </div>
 
         </section>

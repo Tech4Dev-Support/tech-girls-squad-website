@@ -83,11 +83,14 @@ body {
 }
 
 .swiper-pagination-bullet-active {
-  background: #000000 !important;
+  background: #9e005d !important;
   opacity: 1;
+  width: 20px !important;
+  border-radius: 4px !important;
+  transition: 0.2s ease-in-out;
 }
 
 .swiper-pagination {
   position: relative !important;
-  margin-top: 35px;
+  margin-top: 15px;
 }

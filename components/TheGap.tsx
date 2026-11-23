@@ -61,20 +61,41 @@ export default function TheGap() {
         <section
             id="about"
             ref={sectionRef}
-            className="w-full bg-background py-12 md:py-20 px-4 sm:px-8 md:px-16 overflow-hidden"
+            className="w-full bg-section pt-12 pb-5 md:pt-20 md:pb-10 px-6 sm:px-8 md:px-16 overflow-hidden"
         >
-            <div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12">
+            <div className="w-full max-w-325 mx-auto flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12">
+
+                {/* Image */}
+                <div
+                    ref={imageRef}
+                    className="flex justify-center items-center w-full basis-2/5 "
+                >
+                    <div className="relative w-full max-w-72 md:max-w-80.75">
+                        <Image
+                            src="/landing_page_assets/girlsgroup.png"
+                            alt="Tech Girls Squad characters standing together"
+                            width={550}
+                            height={500}
+                            className="w-full h-auto object-contain transition-transform duration-500 ease-out hover:scale-[1.03] hover:-translate-y-1.5 cursor-pointer"
+                            priority
+                        />
+                    </div>
+                </div>
+
+
+
+
 
                 {/* Text */}
                 <div
                     ref={textRef}
-                    className="flex flex-col items-start w-full max-w-175.75"
+                    className="flex flex-col items-start w-full  basis-3/5 "
                 >
                     <span className="font-manrope text-primary font-semibold text-base md:text-lg tracking-tight mb-2 md:mb-3">
                         The Gap
                     </span>
 
-                    <h2 className="font-fredoka text-3xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18] mb-6">
+                    <h2 className="font-fredoka text-2xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18] mb-6">
                         Every girl deserves the <br className="hidden sm:inline" />
                         chance to see herself in <br className="hidden sm:inline" />
                         STEM.
@@ -93,23 +114,6 @@ export default function TheGap() {
                             that encourage curiosity, build confidence, and help girls see themselves as
                             creators, risk-takers, and innovators shaping Africa&apos;s digital future.
                         </p>
-                    </div>
-                </div>
-
-                {/* Image */}
-                <div
-                    ref={imageRef}
-                    className="flex justify-center items-center w-full"
-                >
-                    <div className="relative w-full max-w-72 md:max-w-80.75">
-                        <Image
-                            src="/landing_page_assets/girlsgroup.png"
-                            alt="Tech Girls Squad characters standing together"
-                            width={550}
-                            height={500}
-                            className="w-full h-auto object-contain transition-transform duration-500 ease-out hover:scale-[1.03] hover:-translate-y-1.5 cursor-pointer"
-                            priority
-                        />
                     </div>
                 </div>
 
