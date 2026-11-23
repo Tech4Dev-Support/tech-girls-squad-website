@@ -108,11 +108,16 @@ export default function DonateModal({ isOpen, onClose }: DonateModalProps) {
           label="Amount"
           required
           type="text"
+          inputMode="numeric"
           name="amount"
           placeholder="1,000 minimum"
           value={amount}
           onChange={(e) => {
-            setAmount(e.target.value);
+            const rawDigits = e.target.value.replace(/\D/g, "");
+            const formatted = rawDigits
+              ? Number(rawDigits).toLocaleString("en-NG")
+              : "";
+            setAmount(formatted);
             if (errors.amount) setErrors((prev) => ({ ...prev, amount: "" }));
           }}
           error={errors.amount}
