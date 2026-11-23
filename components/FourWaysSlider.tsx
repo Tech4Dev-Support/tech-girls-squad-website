@@ -51,7 +51,7 @@ const Slider = () => {
 
 export default function FourWaysSlider() {
     return (
-        <section className="w-full h-full  flex flex-col items-start justify-center py-3 px-1   " >
+        <section className="w-full h-full  flex flex-col items-start justify-center   " >
             <Slider />
         </section>
     )

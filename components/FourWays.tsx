@@ -6,8 +6,8 @@ export default function FourWays() {
     return (
         <section
             id="get_involved"
-            className="bg-section px-4 md:px-16 py-10 md:py-20 flex flex-col items-start gap-4 " >
-            <h2 className="font-fredoka text-3xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18]">
+            className="bg-section px-6 md:px-16 py-10 md:py-20 flex flex-col items-start gap-4 " >
+            <h2 className="font-fredoka text-2xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18]">
                 Four ways to help more girls discover what's possible
             </h2>
 
@@ -20,7 +20,7 @@ export default function FourWays() {
 
 
 
-            <div className="w-full mx-auto h-full overflow-hidden  mt-7 " >
+            <div className="w-full mx-auto h-full overflow-hidden mt-3 md:mt-7 " >
                 <FourWaysSlider />
             </div>
 

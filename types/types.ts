@@ -5,10 +5,10 @@ import { ComponentType, SVGProps } from "react";
 export interface Stories_interface {
     title: string,
     description: string,
+    shortDescription: string,
     image: string,
     volume: number,
     status: string,
-    publication_year?: number,
     bg_color: string
 }
 

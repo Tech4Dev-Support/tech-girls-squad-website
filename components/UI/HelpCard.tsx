@@ -27,7 +27,7 @@ export default function HelpCard({ data }: HelpCardProps) {
 
     return (
         <div
-            className=" h-[416px] w-full bg-background rounded-3xl
+            className=" h-90 md:h-104 w-full bg-background rounded-3xl
          flex flex-col items-center justify-center
           py-12 md:py-15 px-5 md:px-10 relative overflow-hidden "
         >
@@ -43,7 +43,9 @@ export default function HelpCard({ data }: HelpCardProps) {
                     </p>
                 </div>
 
-                <CustomButton onClick={handleCardClick} className="w-full ">
+                <CustomButton
+                    onClick={handleCardClick}
+                    className="w-full text-lg! ">
                     {data.buttonText}
                 </CustomButton>
             </div>
