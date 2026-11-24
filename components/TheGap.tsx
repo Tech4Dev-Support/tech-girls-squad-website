@@ -72,7 +72,7 @@ export default function TheGap() {
                 >
                     <div className="relative w-full max-w-72 md:max-w-80.75">
                         <Image
-                            src="/landing_page_assets/girlsgroup.png"
+                            src="/landing_page_assets/girlsgroup.svg"
                             alt="Tech Girls Squad characters standing together"
                             width={550}
                             height={500}

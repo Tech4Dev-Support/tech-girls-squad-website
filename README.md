@@ -11,6 +11,7 @@ This is a single scrolling page with five sections, plus a small number of suppo
 Read both before starting. The PRD is the source of truth for behaviour and requirements; the copy document is the source of truth for wording.
 
 | Document | Link |
+
 |---|---|
 | Product Requirements (PRD) | [https://docs.google.com/document/d/1ZlKlwzLRUlD3zrmznvNwt4YrLNW1eY01/edit?usp=sharing&ouid=108234791799607865043&rtpof=true&sd=true] |
 | Website Copy | [https://docs.google.com/document/d/1wifW9wCbn_ajPOeE2bTIt7pN6uA8jEN-/edit?usp=drive_link&ouid=108234791799607865043&rtpof=true&sd=true] |
@@ -74,9 +75,9 @@ Branch names: `feature/short-description` or `fix/short-description`, lowercase 
 > Branch protection isn't enforced on this repository because of the GitHub plan we're on. The rule stands regardless. Everything goes through a pull request.
 
 ### Commit messages
- 
+
 Prefix with the type of change, then a short description in the present tense.
- 
+
 ```
 feat: add hero section
 fix: correct anchor offset behind sticky header
@@ -85,7 +86,7 @@ style: format impact section
 refactor: extract card component
 chore: bump dependencies
 ```
- 
+
 | Prefix | Use for |
 |---|---|
 | `feat` | New functionality |
@@ -94,7 +95,7 @@ chore: bump dependencies
 | `style` | Formatting, whitespace, no logic change |
 | `refactor` | Restructuring without changing behaviour |
 | `chore` | Tooling, config, dependencies |
- 
+
 Nobody is going to police this. It just means that in week seven, when we're trying to work out when something changed, the history is readable.
 
 ### Pull requests

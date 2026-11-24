@@ -1,12 +1,46 @@
+"use client"
+
 import { footer_explore_data, footer_get_involved_data, footer_social_links } from "@/data/footer_data";
 import Logo from "./UI/Logo";
 import Link from "next/link";
+import { useModal } from "./ModalContext";
 
 
 
 
 
 export default function Footer() {
+    const { openModal } = useModal();
+
+
+    const handleClick = (title: string) => {
+        switch (title) {
+
+            case "Become a Partner":
+                openModal("partner")
+                break
+
+            case "Make a Donation":
+                openModal("donate")
+                break
+
+
+            case "Gift a Book":
+                openModal("gift-copy")
+                break
+
+            case "Get Volume 1":
+                openModal("get-copy")
+                break
+
+            default:
+                break;
+
+        }
+
+    }
+
+
     return (
         <footer className="bg-dark px-3.25 pt-20 pb-10 flex  flex-col items-center justify-center gap-14 lg:gap-20  " >
 
@@ -64,12 +98,15 @@ export default function Footer() {
 
                     <div className="w-full flex flex-col items-start gap-4 md:gap-6  ">
                         {footer_get_involved_data.map((data, i) => (
-                            <Link
-                                className="text-sm md:text-base font-semibold text-background font-manrope hover:text-primary duration-200 ease-in-out transition-all "
-                                key={i}
-                                href={data.path} >
+                            <p
+                                onClick={() => handleClick(data.label)}
+                                className="text-sm md:text-base font-semibold text-background font-manrope
+                                 hover:text-primary duration-200 ease-in-out transition-all
+                                 cursor-pointer
+                                 "
+                                key={i} >
                                 {data.label}
-                            </Link>
+                            </p>
                         ))}
                     </div>
                 </div>
@@ -90,10 +127,21 @@ export default function Footer() {
                         <p>110 W Randol Mill Road State 240 Arlington
                             Texas 76011, USA</p>
 
-                        <p>enquiries@tech4dev.com</p>
+                        <Link
+                            href={"mailto:enquiries@tech4dev.com"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary duration-200 ease-in-out transition-all"
+                        >
+                            enquiries@tech4dev.com</Link>
 
 
-                        <p>+234 913 315 1674</p>
+                        <Link
+                            href="https://wa.me/2349133151674"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-primary duration-200 ease-in-out transition-all"
+                        >+234 913 315 1674</Link>
                     </div>
                 </div>
 

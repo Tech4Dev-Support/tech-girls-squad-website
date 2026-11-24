@@ -18,7 +18,7 @@ export const stories_data: Stories_interface[] = [
         description:
             "This volume will introduce new adventures, emerging technologies, and inspiring characters, continuing to encourage girls across Africa to dream bigger and explore new possibilities through STEM.",
         shortDescription: "This volume will introduce new adventures, technologies and characters to inspire girls across Africa.",
-        image: "/landing_page_assets/book2.png",
+        image: "/landing_page_assets/book2.svg",
         volume: 2,
         status: "In development",
         bg_color: "#ffffff"
