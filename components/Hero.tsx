@@ -5,20 +5,47 @@ import CustomButton from "./UI/CustomButton";
 import { ArrowRight } from "lucide-react";
 import { useModal } from "./ModalContext";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
     const { openModal } = useModal();
+    const [gifLoaded, setGifLoaded] = useState(false);
+    const gifRef = useRef<HTMLImageElement>(null);
+
+
+
+    useEffect(() => {
+        if (gifRef.current?.complete) setGifLoaded(true);
+    }, []);
+
+
     return (
         <section className="w-full bg-background min-h-[110svh] md:min-h-svh relative "  >
 
+            {/* 1. Static poster: small, loads fast, shown immediately */}
             <Image
                 fill
                 alt=""
                 aria-hidden="true"
                 priority
                 sizes="100vw"
+                src="/landing_page_assets/first_frame.jpeg"
+                className="absolute inset-0 z-0 object-cover object-center"
+            />
+
+            {/* 2. GIF: sits on top, invisible until fully loaded, then fades in */}
+            <Image
+                ref={gifRef}
+                fill
+                alt=""
+                aria-hidden="true"
+                unoptimized
+                sizes="100vw"
                 src="/landing_page_assets/hero.gif"
-                className="w-full h-full absolute object-center object-cover inset-0 z-0 " />
+                onLoad={() => setGifLoaded(true)}
+                className={`absolute inset-0 z-0 object-cover object-center transition-opacity duration-700 ${gifLoaded ? "opacity-100" : "opacity-0"
+                    }`}
+            />
 
 
             <div className="bg-[#00000080] h-full w-full absolute inset-0 z-10  flex flex-col items-start justify-center px-4 md:px-16   " >
