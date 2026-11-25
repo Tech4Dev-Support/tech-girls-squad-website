@@ -34,28 +34,27 @@ export default function Page() {
 
                 <div className="w-full bg-section rounded-xl flex flex-col py-2 px-5 gap-1 " >
 
-                    <div className="w-full flex items-center justify-between border-b border-t border-[#00000014] " >
-                        <h5>Order number</h5>
-                        <h4>TGS-260929-4821</h4>
+                    <div className="w-full flex items-center justify-between  py-3  " >
+                        <h5 className=" text-sm md:text-lg text-dark font-normal  " >Order number</h5>
+                        <h4 className=" text-sm md:text-lg text-dark font-semibold">TGS-260929-4821</h4>
                     </div>
 
-                    <div className="w-full flex items-center justify-between border-b border-t border-[#00000014] " >
-                        <h5>Order number</h5>
-                        <h4>TGS-260929-4821</h4>
+                    <div className="w-full flex items-center justify-between border-b border-t border-[#00000014] py-3 " >
+                        <h5 className=" text-sm md:text-lg text-dark font-normal  ">Copies</h5>
+                        <h4 className=" text-sm md:text-lg text-dark font-semibold">2</h4>
                     </div>
 
 
-                    <div className="w-full flex items-center justify-between border-b border-t border-[#00000014] " >
-                        <h5>Order number</h5>
-                        <h4>TGS-260929-4821</h4>
+                    <div className="w-full flex items-center justify-between  py-3" >
+                        <h5 className=" text-sm md:text-lg text-dark font-normal  ">Delivery</h5>
+                        <h4 className=" text-sm md:text-lg text-dark font-semibold">Within 3 working days</h4>
                     </div>
-
 
                 </div>
 
 
-                <Link href={"/"} >
-                    <CustomButton className="text-lg!" >
+                <Link href={"/"} className="w-full! md:w-fit!" >
+                    <CustomButton className="w-full! md:w-fit!  text-lg!" >
                         Back to Tech Girls Squad
                     </CustomButton>
                 </Link>
