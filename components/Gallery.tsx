@@ -66,8 +66,12 @@ export default function GallerySection() {
     }, [showImage])
 
 
+
+
     return (
-        <section className="scroll-mt-20 px-6 md:px-10 py-10 md:py-20 flex flex-col items-center gap-6 md:gap-10 ">
+        <section
+            id="gallery"
+            className="scroll-mt-20 px-6 md:px-10 py-10 md:py-20 flex flex-col items-center gap-6 md:gap-10 ">
 
             {/* Heading */}
             <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 " >
@@ -132,6 +136,7 @@ ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_
                         src={images[0].image_url}
                         alt={images[0].category}
                         fill
+                        priority
                         className="object-cover object-center group-hover:scale-110 duration-400 ease-in-out " />
                 </div>
 
@@ -147,6 +152,7 @@ ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_
                         src={images[1].image_url}
                         alt={images[1].category}
                         fill
+                        priority
                         className="object-cover object-center group-hover:scale-110 duration-400 ease-in-out" />
                 </div>
 
@@ -163,6 +169,7 @@ ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_
                         src={images[4].image_url}
                         alt={images[4].category}
                         fill
+                        priority
                         className="object-cover object-center group-hover:scale-110 duration-400 ease-in-out" />
                 </div>
 
@@ -179,6 +186,7 @@ ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_
                         src={images[5].image_url}
                         alt={images[5].category}
                         fill
+                        priority
                         className="object-cover object-center group-hover:scale-110 duration-400 ease-in-out" />
 
                 </div>
@@ -196,6 +204,7 @@ ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_
                         src={images[2].image_url}
                         alt={images[2].category}
                         fill
+                        priority
                         className="object-cover object-center group-hover:scale-110 duration-400 ease-in-out" />
                 </div>
 
@@ -209,6 +218,7 @@ ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_
                         src={images[3].image_url}
                         alt={images[3].category}
                         fill
+                        priority
                         className="object-cover object-center group-hover:scale-110 duration-400 ease-in-out" />
                 </div>
 

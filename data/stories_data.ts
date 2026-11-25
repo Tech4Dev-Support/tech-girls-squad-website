@@ -11,7 +11,8 @@ export const stories_data: Stories_interface[] = [
         image: "/landing_page_assets/book_1.png",
         volume: 1,
         status: "Available",
-        bg_color: "#F2EBDF"
+        bg_color: "#F2EBDF",
+        mobile_image: "/landing_page_assets/book_1.png",
     },
     {
         title: "Tech Girls Squad is growing.",
@@ -21,6 +22,7 @@ export const stories_data: Stories_interface[] = [
         image: "/landing_page_assets/book2.svg",
         volume: 2,
         status: "In development",
-        bg_color: "#ffffff"
+        bg_color: "#ffffff",
+        mobile_image: "/landing_page_assets/book_2_mobile.svg",
     },
 ]

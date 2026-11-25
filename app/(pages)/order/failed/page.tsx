@@ -11,7 +11,7 @@ export default function Page() {
     return (
         <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-4 md:p-16 ">
 
-            <div className="w-full h-full md:max-w-169.5  " >
+            <div className="w-full h-full max-w-65 md:max-w-169.5  " >
                 <Image
                     src={"/payment-failed.png"}
                     alt="order"
@@ -23,7 +23,7 @@ export default function Page() {
             </div>
 
             <div className=" w-full md:max-w-149.5 flex flex-col items-start gap-5 md:gap-8 " >
-                <h2 className="text-dark text-4xl md:text-7xl font-fredoka font-bold leading-[110%] " >
+                <h2 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%] " >
                     That payment didn't go through.
                 </h2>
 
