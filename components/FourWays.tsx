@@ -6,7 +6,7 @@ export default function FourWays() {
     return (
         <section
             id="get_involved"
-            className="bg-section px-6 md:px-16 py-10 md:py-20 flex flex-col items-start gap-4 " >
+            className="scroll-mt-20 bg-section px-6 md:px-16 py-10 md:py-20 flex flex-col items-start gap-4 " >
             <h2 className="font-fredoka text-2xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18]">
                 Four ways to help more girls discover what's possible
             </h2>

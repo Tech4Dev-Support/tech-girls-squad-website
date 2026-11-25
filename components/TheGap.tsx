@@ -61,7 +61,7 @@ export default function TheGap() {
         <section
             id="about"
             ref={sectionRef}
-            className="w-full bg-section pt-12 pb-5 md:pt-20 md:pb-10 px-6 sm:px-8 md:px-16 overflow-hidden"
+            className="scroll-mt-20 w-full bg-section pt-12 pb-5 md:pt-20 md:pb-10 px-6 sm:px-8 md:px-16 overflow-hidden"
         >
             <div className="w-full max-w-325 mx-auto flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12">
 
@@ -70,7 +70,7 @@ export default function TheGap() {
                     ref={imageRef}
                     className="flex justify-center items-center w-full basis-2/5 "
                 >
-                    <div className="relative w-full max-w-72 md:max-w-80.75">
+                    <div className="relative w-full max-w-72 md:max-w-120 ">
                         <Image
                             src="/landing_page_assets/girlsgroup.svg"
                             alt="Tech Girls Squad characters standing together"

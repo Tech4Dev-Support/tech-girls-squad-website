@@ -44,7 +44,7 @@ export default function ImagePreviewer({
     if (!selected_image_object) return null
 
     return (
-        <div className="w-full h-[svh] md:h-screen fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-between py-3 px-[2%] md:px-[5%]">
+        <div className="w-full h-dvh fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-between py-3 px-[2%] md:px-[5%]">
             {/* Background image */}
             <div
                 className="absolute inset-0 bg-cover bg-center scale-110"
@@ -56,11 +56,11 @@ export default function ImagePreviewer({
 
 
             {/* main section */}
-            <div className="relative z-10 w-full h-full flex flex-col items-center justify-between">
+            <div className="relative z-10 w-full h-full min-h-0 flex flex-col items-center justify-between">
                 <div className="w-full flex items-center justify-between gap-10">
-                    <div className="hidden md:block"></div>
+                    <div className="block w-12 "></div>
 
-                    <div className="w-fit border border-[#9E005C] rounded-[100px] py-2 px-5 flex items-center justify-center font-medium text-white text-sm md:text-base">
+                    <div className="w-fit mx-auto border border-[#9E005C] rounded-[100px] py-2 px-5 flex items-center justify-center font-medium text-white text-sm md:text-base">
                         {currentIndex + 1}/{images.length}
                     </div>
 
@@ -69,7 +69,9 @@ export default function ImagePreviewer({
                         className="text-white  cursor-pointer size-12
                         flex items-center justify-center duration-200 ease-in-out transition-all hover:text-[#9E005D] "
                     >
-                        <X size={24} />
+                        <X
+                            className=" size-[24.33px] "
+                        />
                     </button>
                 </div>
 
@@ -80,7 +82,7 @@ export default function ImagePreviewer({
                         hidden md:flex items-center justify-center duration-200 ease-in-out
                         transition-all hover:text-[#9E005D]"
                     >
-                        <ChevronLeft size={38} />
+                        <ChevronLeft size={24} />
                     </button>
 
                     <Image
@@ -88,7 +90,7 @@ export default function ImagePreviewer({
                         alt={selected_image_object.category}
                         height={1000}
                         width={1000}
-                        className=" w-[95%] mx-auto md:w-full max-w-214.25 object-cover object-center"
+                        className=" w-full max-w-97.5 max-h-73  md:max-w-214.25 h-full md:max-h-112.5 mx-auto  object-cover object-center"
                     />
 
                     <button
@@ -96,30 +98,9 @@ export default function ImagePreviewer({
                         className="text-white cursor-pointer size-13 hidden md:flex
                          items-center justify-center duration-200 ease-in-out transition-all hover:text-[#9E005D]"
                     >
-                        <ChevronRight size={38} />
+                        <ChevronRight size={24} />
                     </button>
 
-
-
-                    <div className="w-fit flex md:hidden items-center justify-center gap-4 mt-7 " >
-                        <button
-                            onClick={goPrev}
-                            className="text-white cursor-pointer size-13
-                        flex items-center justify-center duration-200 ease-in-out
-                        transition-all hover:text-[#9E005D]"
-                        >
-                            <ChevronLeft size={30} />
-                        </button>
-
-                        <button
-                            onClick={goNext}
-                            className="text-white cursor-pointer size-13 flex
-                         items-center justify-center duration-200 ease-in-out transition-all hover:text-[#9E005D]"
-                        >
-                            <ChevronRight size={30} />
-                        </button>
-
-                    </div>
                 </div>
 
 
@@ -128,8 +109,8 @@ export default function ImagePreviewer({
 
 
                 {/* Thumbnails */}
-                <div className="w-full flex items-center justify-start md:justify-center overflow-x-auto pb-2" >
-                    <div className="w-fit flex items-center justify-between gap-2 h-fit">
+                <div className="w-full flex items-center justify-start overflow-x-auto hide-scrollbar pb-5 md:pb-2" >
+                    <div className="w-fit flex items-center justify-between gap-1 h-fit">
                         {images.map((image) => (
                             <div
                                 onClick={() => setSelectedImage(image.id)}

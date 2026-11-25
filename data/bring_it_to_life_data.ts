@@ -18,7 +18,7 @@ export const bring_it_to_life_data: Bring_it_to_life_data_interface[] = [
         path: "#impact"
     },
     {
-        heading: "Partnership that scale",
+        heading: "Partnerships that scale",
         image: "/bring_it_to_life_section/image3.jpg",
         link_text: "Become a Partner",
         paragraph: "We work with schools, funders and supporters to bring more books and STEM experiences to girls.",

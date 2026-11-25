@@ -78,11 +78,8 @@ export default function Hero() {
                                 variant="outline">
                                 Explore the impact
 
-                                <span
-                                    aria-hidden="true"
-                                    className="flex size-6 shrink-0 items-center justify-center rounded-full border border-current">
-                                    <ArrowRight size={18} strokeWidth={2} />
-                                </span>
+
+                                <ArrowRight size={18} strokeWidth={2} />
                             </CustomButton>
                         </Link>
                     </div>
@@ -92,6 +89,6 @@ export default function Hero() {
 
             </div>
 
-        </section>
+        </section >
     )
 }
