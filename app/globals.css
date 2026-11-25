@@ -94,3 +94,13 @@ body {
   position: relative !important;
   margin-top: 15px;
 }
+
+/* Hide scrollbar but keep scrolling functional */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

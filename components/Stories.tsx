@@ -66,7 +66,7 @@ export default function Stories() {
         <section
             id="the_books"
             ref={sectionRef}
-            className="px-6 md:px-16 py-10 md:py-20 flex flex-col items-start md:gap-4 overflow-hidden"
+            className="scroll-mt-20 px-6 md:px-16 py-10 md:py-20 flex flex-col items-start md:gap-4 overflow-hidden"
         >
             <div ref={headerRef} className=" space-y-4 md:space-y-1.5 " >
                 <h2 className="font-fredoka text-2xl md:text-4xl lg:text-[44px] font-bold text-dark leading-[1.18]">

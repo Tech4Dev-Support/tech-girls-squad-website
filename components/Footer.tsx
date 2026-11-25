@@ -136,12 +136,8 @@ export default function Footer() {
                             enquiries@tech4dev.com</Link>
 
 
-                        <Link
-                            href="https://wa.me/2349133151674"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-primary duration-200 ease-in-out transition-all"
-                        >+234 913 315 1674</Link>
+                        <p
+                        >+234 913 315 1674</p>
                     </div>
                 </div>
 

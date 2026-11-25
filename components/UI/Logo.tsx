@@ -11,7 +11,7 @@ export default function Logo() {
                 src={"/landing_page_assets/logo.png"}
                 alt="logo"
                 height={500} width={500}
-                className=" w-12 md:w-18 "
+                className=" w-[50.82px] md:w-18 z-20 "
             />
         </Link>
     )

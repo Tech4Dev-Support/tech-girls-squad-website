@@ -27,17 +27,17 @@ export default function HelpCard({ data }: HelpCardProps) {
 
     return (
         <div
-            className=" h-90 md:h-104 w-full bg-background rounded-3xl
+            className=" h-63 md:h-79.25 w-full bg-background rounded-3xl
          flex flex-col items-center justify-center
-          py-12 md:py-15 px-5 md:px-10 relative overflow-hidden "
+        px-6 pt-11 pb-6 md:px-10 relative overflow-hidden "
         >
-            <div className="w-full gap-15 md:gap-20 lg:gap-28.5 flex flex-col items-center z-10  ">
-                <div className="space-y-8 ">
+            <div className="w-full   flex flex-col items-center gap-6 md:gap-10.5 z-10  ">
+                <div className="space-y-2 md:space-y-8 ">
                     <h4 className=" font-manrope text-dark font-bold text-xl md:text-2xl ">
                         {" "}
                         {data.heading}{" "}
                     </h4>
-                    <p className=" text-base md:text-lg font-manrope text-foreground ">
+                    <p className=" text-sm md:text-base font-manrope text-foreground ">
                         {" "}
                         {data.content}{" "}
                     </p>
@@ -54,10 +54,10 @@ export default function HelpCard({ data }: HelpCardProps) {
                 style={{
                     backgroundColor: data.spotColor,
                 }}
-                className=" size-32 md:size-36 xl:size-50 rounded-full shrink-0 absolute
--top-6 -right-12
+                className=" size-27.5 md:size-36 xl:size-50 rounded-full shrink-0 absolute
+-top-11 -right-12
 md:-top-15 md:-right-15
-                xl:-top-20 xl:-right-15
+                xl:-top-26 xl:-right-15
                  z-0 "
             />
         </div>

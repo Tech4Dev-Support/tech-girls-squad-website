@@ -31,7 +31,7 @@ export default function GallerySection() {
 
         gsap.to(galleryRef.current, {
             opacity: 0,
-            duration: 0.3,
+            duration: 0.2,
             ease: "power2.inOut",
             onComplete: () => {
                 setCategory(newCategory);
@@ -45,7 +45,7 @@ export default function GallerySection() {
     useEffect(() => {
         gsap.to(galleryRef.current, {
             opacity: 1,
-            duration: 0.3,
+            duration: 0.2,
             ease: "power2.out",
         });
     }, [category]);
@@ -67,7 +67,7 @@ export default function GallerySection() {
 
 
     return (
-        <section className="px-6 md:px-10 py-10 md:py-20 flex flex-col items-center gap-6 md:gap-10 ">
+        <section className="scroll-mt-20 px-6 md:px-10 py-10 md:py-20 flex flex-col items-center gap-6 md:gap-10 ">
 
             {/* Heading */}
             <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 " >
@@ -91,7 +91,7 @@ export default function GallerySection() {
                         onClick={() => handleCategoryChange("Advocacy Visits")}
                         className={`
                         py-2  px-4 md:px-6 rounded-3xl flex items-center justify-center  font-semibold text-base cursor-pointer
-                        duration-200 ease-in-out transition-all
+                        duration-20 ease-in-out transition-all
 ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_0px_#00000014] " : "text-foreground bg-transparent "}
 
                         `} >
@@ -220,7 +220,7 @@ ${category === "Advocacy Visits" ? "bg-background text-dark shadow-[0px_1px_3px_
                 <ImagePreviewer
                     setSelectedImage={setSelectedImage}
                     selectedImage={selectedImage}
-                    images={gallery_images}
+                    images={images}
                     closeImage={() => setShowImage(false)}
                 />
             )}

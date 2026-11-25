@@ -42,13 +42,14 @@ export default function Navbar() {
         <>
             <nav
                 className={`
-        w-full px-6 md:px-16 py-3.5
+        w-full px-5 md:px-16 py-2.5 md:py-3.5
         flex items-center justify-between
         fixed top-0 left-0 transition-all duration-300 ease-in-out
-${scrolled ? "bg-background " : "bg-transparent"}
-        z-20
-        `}
+        ${scrolled ? "bg-background" : "bg-transparent"}
+        z-50
+    `}
             >
+
                 <Logo />
 
                 <div className=" w-fit hidden md:flex items-center justify-start  gap-6  ">
@@ -83,7 +84,7 @@ ${scrolled ? "bg-background " : "bg-transparent"}
                 {/* Menu button */}
                 <button
                     onClick={() => setShowMobileMenu((prev) => !prev)}
-                    className="relative flex h-8 w-8 items-center justify-center md:hidden cursor-pointer"
+                    className="relative z-60 flex h-8 w-8 items-center justify-center md:hidden cursor-pointer"
                 >
                     {/* Top / first bar */}
                     <span
@@ -114,32 +115,42 @@ ${scrolled ? "bg-background " : "bg-transparent"}
                 </button>
             </nav>
 
-            {/* Mobile menu  */}
-            <div
-                className={`fixed top-0 left-0 bg-white w-[75%]  h-full z-20
-            transition-transform duration-300 ease-in-out
-            px-4 py-12 flex flex-col gap-14 items-start justify-stretch
-                ${showMobileMenu ? " translate-x-0 " : "-translate-x-full "}
-                 `}
-            >
-                <Logo />
 
-                <div className=" w-full flex flex-col items-start justify-between  gap-6  h-full max-h-[400px] ">
-                    <ul className="w-fit flex flex-col items-start gap-6 ">
+
+
+
+            {/* overlay  */}
+            {showMobileMenu && <div className=" fixed inset-0 h-dvh w-full     z-21  bg-black/50" />}
+
+
+
+
+            {/* Mobile menu  */}
+            < div
+                className={`
+        fixed top-0 left-0 w-full h-dvh z-40 md:hidden
+        transition-all duration-300 ease-in-out
+        ${showMobileMenu
+                        ? "translate-y-0 opacity-100 pointer-events-auto"
+                        : "-translate-y-full opacity-0 pointer-events-none"
+                    }
+    `}
+            >
+                <div className="
+        w-full bg-white mt-16.5 px-6 pt-2 pb-6
+        flex flex-col items-start justify-between
+        gap-6 h-fit
+    ">
+                    <ul className="w-full flex flex-col items-start gap-2">
                         {navlinks.map((link, i) => (
                             <li
                                 onClick={() => setShowMobileMenu(false)}
                                 key={i}
-                                className={`
-                            text-xl font-semibold
-                            font-manrope cursor-pointer  transition-all duration-100 ease-in-out
-text-primary
-                            `}
+                                className="text-xl font-semibold font-manrope cursor-pointer text-black
+                                border-b border-section w-full py-4
+                                "
                             >
-                                <Link
-                                    href={link.path}
-                                    className=" hover:text-primary transition-all duration-200 ease-in-out "
-                                >
+                                <Link href={link.path}>
                                     {link.label}
                                 </Link>
                             </li>
@@ -151,13 +162,13 @@ text-primary
                             setShowMobileMenu(false);
                             openModal("get-copy");
                         }}
-                        className="w-full"
+                        className="w-full text-lg!"
                         variant="primary"
                     >
                         Get Volume 1
                     </CustomButton>
                 </div>
-            </div>
+            </div >
         </>
     );
-}
+}
