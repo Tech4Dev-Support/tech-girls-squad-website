@@ -30,7 +30,20 @@ export default function StoryCard({ data, index }: StoryCardProps) {
                         height={1000} width={1000}
                         className={`
                             w-30 md:w-65.75 h-auto max-h-[371.7px]
-                        rounded-lg
+                        rounded-lg hidden md:block
+                        object-center object-cover
+                        ${data.title === "Tech Girls Squad" ? "shadow-[0px_12px_28px_0px_#00000033]" : ""}
+                            `}
+                    />
+
+                    {/* mobile images */}
+                    <Image
+                        src={data.mobile_image}
+                        alt={`${data.title}-image`}
+                        height={1000} width={1000}
+                        className={`
+                            w-30 md:w-65.75 h-auto max-h-[371.7px]
+                        rounded-lg block md:hidden
                         object-center object-cover
                         ${data.title === "Tech Girls Squad" ? "shadow-[0px_12px_28px_0px_#00000033]" : ""}
                             `}

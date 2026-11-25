@@ -77,8 +77,6 @@ export default function Hero() {
                                 className="text-lg!"
                                 variant="outline">
                                 Explore the impact
-
-
                                 <ArrowRight size={18} strokeWidth={2} />
                             </CustomButton>
                         </Link>

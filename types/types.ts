@@ -9,7 +9,8 @@ export interface Stories_interface {
     image: string,
     volume: number,
     status: string,
-    bg_color: string
+    bg_color: string,
+    mobile_image: string
 }
 
 

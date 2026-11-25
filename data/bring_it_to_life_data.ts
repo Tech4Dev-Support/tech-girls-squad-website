@@ -13,9 +13,9 @@ export const bring_it_to_life_data: Bring_it_to_life_data_interface[] = [
     {
         heading: "School Engagement",
         image: "/bring_it_to_life_section/image2.jpg",
-        link_text: "Explore the Impact ",
+        link_text: "View Gallery",
         paragraph: "Through advocacy visits and book readings, girls ask questions, meet role models and explore technology.",
-        path: "#impact"
+        path: "#gallery"
     },
     {
         heading: "Partnerships that scale",
