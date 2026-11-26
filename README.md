@@ -17,18 +17,6 @@ The website for **Tech Girls Squad**, an advocacy book published by Tech4Dev in 
 
 ---
 
-## Documents
-
-| Document | Link |
-|---|---|
-| Product Requirements (PRD) | [Google Docs](https://docs.google.com/document/d/1ZlKlwzLRUlD3zrmznvNwt4YrLNW1eY01/edit?usp=sharing&ouid=108234791799607865043&rtpof=true&sd=true) |
-| Website Copy | [Google Docs](https://docs.google.com/document/d/1wifW9wCbn_ajPOeE2bTIt7pN6uA8jEN-/edit?usp=drive_link&ouid=108234791799607865043&rtpof=true&sd=true) |
-| Figma designs | [Figma](https://www.figma.com/design/lNEG6EV9YfSCgZoUEyNy3g/Tech-Girls-Squad-Website?node-id=0-1&t=1hXe7EMDDhRDLTYI-1) |
-
-The PRD describes how the site behaves; the copy document holds the approved wording. When you change text on the site, update the copy document too, so the two stay in step.
-
----
-
 ## Stack
 
 | | |
