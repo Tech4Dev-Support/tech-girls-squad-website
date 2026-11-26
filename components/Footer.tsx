@@ -61,6 +61,7 @@ export default function Footer() {
 
                                 return (
                                     <Link
+                                        aria-label={`Tech4DevHQ on ${social_link.name}`}
                                         target="_blank"
                                         className="size-10 rounded-full shrink-0 bg-[#353535] flex items-center justify-center
                                         "
