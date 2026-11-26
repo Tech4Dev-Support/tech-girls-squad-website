@@ -58,7 +58,12 @@ export default function Page() {
                 </Link>
 
                 <p className="text-dark font-manrope font-normal text-[13px] md:text-base " >
-                    Need help?  <span className="text-primary" >techgirlssquad@tech4dev.com</span></p>
+                    Need help?  <Link
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={"mailto:techgirlssquad@tech4dev.com"}
+                        className="text-primary" > techgirlssquad@tech4dev.com</Link>
+                </p>
 
             </div>
 

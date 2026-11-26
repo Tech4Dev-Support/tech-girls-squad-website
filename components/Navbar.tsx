@@ -129,7 +129,7 @@ export default function Navbar() {
             < div
                 className={`
         fixed top-0 left-0 w-full h-dvh z-40 md:hidden
-        transition-all duration-300 ease-in-out
+        transition-all duration-300 ease-in-out shadow-[0px_8px_24px_0px_#00000026]
         ${showMobileMenu
                         ? "translate-y-0 opacity-100 pointer-events-auto"
                         : "-translate-y-full opacity-0 pointer-events-none"
@@ -146,11 +146,15 @@ export default function Navbar() {
                             <li
                                 onClick={() => setShowMobileMenu(false)}
                                 key={i}
-                                className="text-xl font-semibold font-manrope cursor-pointer text-black
-                                border-b border-section w-full py-4
+                                className="   cursor-pointer
+                                border-b border-section w-full
                                 "
                             >
-                                <Link href={link.path}>
+                                <Link
+                                    className=" w-full block h-full text-lg font-normal font-manrope
+                                    py-4  text-black tracking-[2%]
+                                    "
+                                    href={link.path}>
                                     {link.label}
                                 </Link>
                             </li>
@@ -162,7 +166,7 @@ export default function Navbar() {
                             setShowMobileMenu(false);
                             openModal("get-copy");
                         }}
-                        className="w-full text-lg!"
+                        className="w-full! text-lg! mb-6"
                         variant="primary"
                     >
                         Get Volume 1

@@ -28,8 +28,13 @@ export default function Page() {
                 </h2>
 
                 <p className="text-dark font-manrope font-normal text-base md:text-lg " >
-                    No money has left your account. Please try again, or contact us at
-                    <span className="text-primary " >techgirlssquad@tech4dev.com </span> if the problem continues.</p>
+                    No money has left your account. Please try again, or contact us at {" "}
+                    <Link
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={"mailto:techgirlssquad@tech4dev.com"}
+                        className="text-primary" >techgirlssquad@tech4dev.com</Link> {" "}
+                    if the problem continues.</p>
 
 
                 <div className="flex items-center justify-start gap-4 " >
