@@ -23,14 +23,11 @@ interface VerifyResponse {
 const POLL_INTERVAL_MS = 3000;
 const MAX_POLL_DURATION_MS = 60_000;
 
-function pluralizeCopies(count: number) {
-  return count === 1 ? "copy" : "copies";
-}
-
 function PaymentCallbackContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const reference = searchParams.get("reference") || searchParams.get("trxref") || "";
+  const reference =
+    searchParams.get("reference") || searchParams.get("trxref") || "";
 
   const [state, setState] = useState<
     | { kind: "loading" }
@@ -41,9 +38,9 @@ function PaymentCallbackContent() {
     reference
       ? { kind: "loading" }
       : {
-          kind: "error",
-          message: "No payment reference was provided.",
-        }
+        kind: "error",
+        message: "No payment reference was provided.",
+      }
   );
 
   useEffect(() => {
@@ -163,7 +160,7 @@ function PaymentCallbackContent() {
   if (state.kind === "error") {
     return (
       <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-4 md:p-16">
-        <div className="w-full h-full md:max-w-169.5">
+        <div className="w-full h-full max-w-65 md:max-w-169.5">
           <Image
             src="/payment-failed.png"
             alt="Verification issue"
@@ -173,37 +170,40 @@ function PaymentCallbackContent() {
             priority
           />
         </div>
-        <div className="w-full md:max-w-149.5 flex flex-col items-start gap-5 md:gap-8">
-          <h1 className="text-dark text-4xl md:text-6xl font-fredoka font-bold leading-[110%]">
+        <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+          <h1 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
             We couldn&apos;t confirm that payment.
           </h1>
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
+          <p className="text-dark font-manrope font-normal text-[15px] md:text-lg">
             {state.message}
           </p>
           {state.reference && (
-            <p className="text-dark font-manrope font-normal text-base md:text-lg">
+            <p className="text-dark font-manrope font-normal text-[15px] md:text-lg">
               Reference: <span className="text-primary">{state.reference}</span>
             </p>
           )}
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
-            If you were charged, please contact us at{" "}
-            <a
+          <Link href="/" className="w-full! md:w-fit!">
+            <CustomButton className="w-full! md:w-fit! text-lg!">
+              Back to Tech Girls Squad
+            </CustomButton>
+          </Link>
+          <p className="text-dark font-manrope font-normal text-[13px] md:text-base">
+            Need help?{" "}
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
               href="mailto:techgirlssquad@tech4dev.com"
-              className="text-primary hover:underline"
+              className="text-primary"
             >
               techgirlssquad@tech4dev.com
-            </a>
-            .
+            </Link>
           </p>
-          <Link href="/">
-            <CustomButton>Back to Tech Girls Squad</CustomButton>
-          </Link>
         </div>
       </main>
     );
   }
 
-  // Success states
+  // Success states matching the updated /donation/success, /order, and /order/gift designs
   const { data } = state;
   const displayReference = data.reference || reference;
   const customerEmail = data.customer || "";
@@ -212,11 +212,11 @@ function PaymentCallbackContent() {
   const amountNaira = Math.round(Number(data.amount ?? 0) / 100);
   const isDonation = data.orderType === "Donation";
 
-  // 1. Donation success
+  // 1. Donation success (matches /donation/success)
   if (isDonation) {
     return (
-      <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-4 md:p-16">
-        <div className="w-full h-full md:max-w-169.5">
+      <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-3 md:p-16">
+        <div className="w-full h-full max-w-65 md:max-w-169.5">
           <Image
             src="/donation-success.png"
             alt="donation success"
@@ -227,48 +227,70 @@ function PaymentCallbackContent() {
           />
         </div>
 
-        <div className="w-full md:max-w-149.5 flex flex-col items-start gap-5 md:gap-8">
-          <h1 className="text-dark text-4xl md:text-7xl font-fredoka font-bold leading-[110%]">
+        <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+          <h2 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
             Thank you for backing the next volume.
-          </h1>
+          </h2>
 
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
-            We&apos;ve received your donation of{" "}
-            <span className="text-primary">₦{amountNaira.toLocaleString()}</span>
-            {customerEmail ? (
-              <>
-                {" "}
-                and sent a confirmation to{" "}
-                <span className="text-primary">{customerEmail}.</span>
-              </>
-            ) : (
-              "."
-            )}
-          </p>
+          {customerEmail && (
+            <p className="text-dark font-manrope font-normal text-[15px] md:text-lg">
+              We&apos;ve sent a confirmation to{" "}
+              <span className="text-primary">{customerEmail}.</span>
+            </p>
+          )}
 
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
-            Your reference is{" "}
-            <span className="text-primary">{displayReference}.</span>
-          </p>
+          <div className="w-full bg-section rounded-xl flex flex-col py-2 px-5 gap-1">
+            <div className="w-full flex items-center justify-between py-3">
+              <h5 className="text-sm md:text-lg text-dark font-normal">
+                Reference
+              </h5>
+              <h4 className="text-sm md:text-lg text-dark font-semibold">
+                {displayReference}
+              </h4>
+            </div>
 
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
+            <div className="w-full flex items-center justify-between border-t border-[#00000014] py-3">
+              <h5 className="text-sm md:text-lg text-dark font-normal">
+                Amount
+              </h5>
+              <h4 className="text-sm md:text-lg text-dark font-semibold">
+                ₦{amountNaira.toLocaleString()}
+              </h4>
+            </div>
+          </div>
+
+          <p className="text-dark font-manrope font-normal text-[15px] md:text-lg">
             Your support helps us write the next volume and put it in more
-            girls&apos; hands.
+            girls&rsquo; hands.
           </p>
 
-          <Link href="/">
-            <CustomButton>Back to Tech Girls Squad</CustomButton>
+          <Link href="/" className="w-full! md:w-fit!">
+            <CustomButton className="w-full! md:w-fit! text-lg!">
+              Back to Tech Girls Squad
+            </CustomButton>
           </Link>
+
+          <p className="text-dark font-manrope font-normal text-[13px] md:text-base">
+            Need help?{" "}
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="mailto:techgirlssquad@tech4dev.com"
+              className="text-primary"
+            >
+              techgirlssquad@tech4dev.com
+            </Link>
+          </p>
         </div>
       </main>
     );
   }
 
-  // 2. Purchase (with optional extra gift copies)
+  // 2. Purchase success (matches /order, with extra gift rows if copiesToGift > 0)
   if (copiesForMe > 0) {
     return (
-      <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-4 md:p-16">
-        <div className="w-full h-full md:max-w-169.5">
+      <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-3 md:p-16">
+        <div className="w-full h-full max-w-65 md:max-w-169.5">
           <Image
             src="/order.png"
             alt="order"
@@ -279,54 +301,95 @@ function PaymentCallbackContent() {
           />
         </div>
 
-        <div className="w-full md:max-w-149.5 flex flex-col items-start gap-5 md:gap-8">
-          <h1 className="text-dark text-4xl md:text-7xl font-fredoka font-bold leading-[110%]">
+        <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+          <h2 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
             Thank you for your order.
-          </h1>
+          </h2>
 
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
-            Your order reference is{" "}
-            <span className="text-primary">{displayReference}</span>
-            {customerEmail ? (
-              <>
-                , and we&apos;ve sent a confirmation to{" "}
-                <span className="text-primary">{customerEmail}.</span>
-              </>
-            ) : (
-              "."
-            )}
-          </p>
-
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
-            Your {copiesForMe} {pluralizeCopies(copiesForMe)} will be dispatched
-            within <span className="text-primary">7 working days.</span>
-          </p>
-
-          {copiesToGift > 0 && (
-            <p className="text-dark font-manrope font-normal text-base md:text-lg">
-              Your {copiesToGift} gifted {pluralizeCopies(copiesToGift)} will be
-              placed with girls or school libraries that wouldn&apos;t otherwise
-              have access.
+          {customerEmail && (
+            <p className="text-dark font-manrope font-normal text-[15px] md:text-lg">
+              We&apos;ve sent a confirmation to{" "}
+              <span className="text-primary">{customerEmail}.</span>
             </p>
           )}
 
-          <p className="text-dark font-manrope font-normal text-base md:text-lg">
-            If anything looks wrong, reply to that email or reach us at{" "}
-            <span className="text-primary">techgirlssquad@tech4dev.com.</span>
-          </p>
+          <div className="w-full bg-section rounded-xl flex flex-col py-2 px-5 gap-1">
+            <div className="w-full flex items-center justify-between py-3">
+              <h5 className="text-sm md:text-lg text-dark font-normal">
+                Order number
+              </h5>
+              <h4 className="text-sm md:text-lg text-dark font-semibold">
+                {displayReference}
+              </h4>
+            </div>
 
-          <Link href="/">
-            <CustomButton>Back to Tech Girls Squad</CustomButton>
+            <div className="w-full flex items-center justify-between border-t border-[#00000014] py-3">
+              <h5 className="text-sm md:text-lg text-dark font-normal">
+                Copies
+              </h5>
+              <h4 className="text-sm md:text-lg text-dark font-semibold">
+                {copiesForMe}
+              </h4>
+            </div>
+
+            {copiesToGift > 0 && (
+              <>
+                <div className="w-full flex items-center justify-between border-t border-[#00000014] py-3">
+                  <h5 className="text-sm md:text-lg text-dark font-normal">
+                    Gifted copies
+                  </h5>
+                  <h4 className="text-sm md:text-lg text-dark font-semibold">
+                    {copiesToGift}
+                  </h4>
+                </div>
+
+                <div className="w-full flex items-center justify-between border-t border-[#00000014] py-3">
+                  <h5 className="text-sm md:text-lg text-dark font-normal">
+                    Goes to
+                  </h5>
+                  <h4 className="text-sm md:text-lg text-dark font-semibold">
+                    Girls or school libraries in need
+                  </h4>
+                </div>
+              </>
+            )}
+
+            <div className="w-full flex items-center justify-between border-t border-[#00000014] py-3">
+              <h5 className="text-sm md:text-lg text-dark font-normal">
+                Delivery
+              </h5>
+              <h4 className="text-sm md:text-lg text-dark font-semibold">
+                Within 7 working days
+              </h4>
+            </div>
+          </div>
+
+          <Link href="/" className="w-full! md:w-fit!">
+            <CustomButton className="w-full! md:w-fit! text-lg!">
+              Back to Tech Girls Squad
+            </CustomButton>
           </Link>
+
+          <p className="text-dark font-manrope font-normal text-[13px] md:text-base">
+            Need help?{" "}
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="mailto:techgirlssquad@tech4dev.com"
+              className="text-primary"
+            >
+              techgirlssquad@tech4dev.com
+            </Link>
+          </p>
         </div>
       </main>
     );
   }
 
-  // 3. Gift-only order (copiesForMe === 0)
+  // 3. Gift-only order (matches /order/gift)
   return (
     <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-4 md:p-16">
-      <div className="w-full h-full md:max-w-169.5">
+      <div className="w-full h-full max-w-65 md:max-w-169.5">
         <Image
           src="/order-gift.png"
           alt="order"
@@ -337,38 +400,62 @@ function PaymentCallbackContent() {
         />
       </div>
 
-      <div className="w-full md:max-w-149.5 flex flex-col items-start gap-5 md:gap-8">
-        <h1 className="text-dark text-4xl md:text-7xl font-fredoka font-bold leading-[110%]">
+      <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+        <h2 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
           Thank you for your order.
-        </h1>
+        </h2>
 
-        <p className="text-dark font-manrope font-normal text-base md:text-lg">
-          Your order reference is{" "}
-          <span className="text-primary">{displayReference}</span>
-          {customerEmail ? (
-            <>
-              , and we&apos;ve sent a confirmation to{" "}
-              <span className="text-primary">{customerEmail}.</span>
-            </>
-          ) : (
-            "."
-          )}
-        </p>
+        {customerEmail && (
+          <p className="text-dark font-manrope font-normal text-[15px] md:text-lg">
+            We&apos;ve sent a confirmation to{" "}
+            <span className="text-primary">{customerEmail}.</span>
+          </p>
+        )}
 
-        <p className="text-dark font-manrope font-normal text-base md:text-lg">
-          Your {copiesToGift} gifted {pluralizeCopies(copiesToGift)} will be
-          placed with girls or school libraries that wouldn&apos;t otherwise
-          have access.
-        </p>
+        <div className="w-full bg-section rounded-xl flex flex-col py-2 px-5 gap-1">
+          <div className="w-full flex items-center justify-between py-3">
+            <h5 className="text-sm md:text-lg text-dark font-normal">
+              Order number
+            </h5>
+            <h4 className="text-sm md:text-lg text-dark font-semibold">
+              {displayReference}
+            </h4>
+          </div>
 
-        <p className="text-dark font-manrope font-normal text-base md:text-lg">
-          If anything looks wrong, reply to that email or reach us at{" "}
-          <span className="text-primary">techgirlssquad@tech4dev.com.</span>
-        </p>
+          <div className="w-full flex items-center justify-between border-b border-t border-[#00000014] py-3">
+            <h5 className="text-sm md:text-lg text-dark font-normal">Copies</h5>
+            <h4 className="text-sm md:text-lg text-dark font-semibold">
+              {copiesToGift}
+            </h4>
+          </div>
 
-        <Link href="/">
-          <CustomButton>Back to Tech Girls Squad</CustomButton>
+          <div className="w-full flex items-center justify-between py-3">
+            <h5 className="text-sm md:text-lg text-dark font-normal">
+              Goes to
+            </h5>
+            <h4 className="text-sm md:text-lg text-dark font-semibold">
+              Girls or school libraries in need
+            </h4>
+          </div>
+        </div>
+
+        <Link href="/" className="w-full! md:w-fit!">
+          <CustomButton className="w-full! md:w-fit! text-lg!">
+            Back to Tech Girls Squad
+          </CustomButton>
         </Link>
+
+        <p className="text-dark font-manrope font-normal text-[13px] md:text-base">
+          Need help?{" "}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="mailto:techgirlssquad@tech4dev.com"
+            className="text-primary"
+          >
+            techgirlssquad@tech4dev.com
+          </Link>
+        </p>
       </div>
     </main>
   );

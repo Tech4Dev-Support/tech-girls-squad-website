@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalWrapper from "../UI/ModalWrapper";
 import FormWrapper from "./FormWrapper";
 import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
+import EnquirySuccessCard from "./EnquirySuccessCard";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { postJson } from "@/lib/api";
@@ -24,8 +25,15 @@ export default function SchoolModal({ isOpen, onClose }: SchoolModalProps) {
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [message, setMessage] = useState("");
   const [agreedPrivacy, setAgreedPrivacy] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIsSubmitted(false);
+    }
+  }, [isOpen]);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -63,8 +71,28 @@ export default function SchoolModal({ isOpen, onClose }: SchoolModalProps) {
       honeypot,
     });
 
+    if (res.ok) {
+      setIsSubmitted(true);
+    }
+
     return { ok: res.ok, error: res.error };
   };
+
+  if (isSubmitted) {
+    return (
+      <ModalWrapper
+        isOpen={isOpen}
+        onClose={onClose}
+        className="p-5! sm:px-8! sm:py-7!"
+      >
+        <EnquirySuccessCard
+          title="Thank you for order!"
+          subtitle="Your request has been received successfully"
+          onClose={onClose}
+        />
+      </ModalWrapper>
+    );
+  }
 
   return (
     <ModalWrapper
