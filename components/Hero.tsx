@@ -20,7 +20,7 @@ export default function Hero() {
 
 
     return (
-        <section className="w-full bg-background min-h-[110svh] md:min-h-svh relative "  >
+        <section className="w-full bg-background h-dvh relative "  >
 
             {/* 1. Static poster: small, loads fast, shown immediately */}
             <Image
@@ -29,7 +29,7 @@ export default function Hero() {
                 aria-hidden="true"
                 priority
                 sizes="100vw"
-                src="/landing_page_assets/first_frame.jpeg"
+                src="/landing_page_assets/first_frame.webp"
                 className="absolute inset-0 z-0 object-cover object-center"
             />
 

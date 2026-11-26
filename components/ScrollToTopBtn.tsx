@@ -33,6 +33,7 @@ export default function ScrollToTopBtn() {
 
     return (
         <button
+            aria-label="Scroll to top button"
             onClick={scrollToTop}
             className={`
              fixed z-30 bg-primary bottom-4 right-5 md:right-10 rounded-full
