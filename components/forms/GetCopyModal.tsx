@@ -20,7 +20,7 @@ interface GetCopyModalProps {
 
 export default function GetCopyModal({ isOpen, onClose }: GetCopyModalProps) {
   
-  const [numCopies, setNumCopies] = useState<number>(1);
+  const [numCopiesInput, setNumCopiesInput] = useState<string>("1");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -29,8 +29,11 @@ export default function GetCopyModal({ isOpen, onClose }: GetCopyModalProps) {
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [nearestLandmark, setNearestLandmark] = useState("");
   const [isGifted, setIsGifted] = useState(false);
-  const [giftNumCopies, setGiftNumCopies] = useState<number>(1);
+  const [giftNumCopiesInput, setGiftNumCopiesInput] = useState<string>("1");
   const [agreedPrivacy, setAgreedPrivacy] = useState(false);
+
+  const numCopies = Math.max(1, parseInt(numCopiesInput, 10) || 1);
+  const giftNumCopies = Math.max(1, parseInt(giftNumCopiesInput, 10) || 1);
 
   
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -124,11 +127,20 @@ export default function GetCopyModal({ isOpen, onClose }: GetCopyModalProps) {
         <FormInput
           label="Number of Copies"
           required
-          type="number"
+          type="text"
+          inputMode="numeric"
           name="numCopies"
-          min={1}
-          value={numCopies}
-          onChange={(e) => setNumCopies(parseInt(e.target.value) || 1)}
+          value={numCopiesInput}
+          onChange={(e) => {
+            const digits = e.target.value.replace(/\D/g, "");
+            setNumCopiesInput(digits);
+          }}
+          onBlur={() => {
+            const parsed = parseInt(numCopiesInput, 10);
+            setNumCopiesInput(String(Number.isFinite(parsed) && parsed >= 1 ? parsed : 1));
+          }}
+          onStep={(delta) => setNumCopiesInput(String(Math.max(1, numCopies + delta)))}
+          disableDecrement={numCopies <= 1}
         />
 
         <FormInput
@@ -245,11 +257,20 @@ export default function GetCopyModal({ isOpen, onClose }: GetCopyModalProps) {
             <FormInput
               label="Number of Copies"
               required
-              type="number"
+              type="text"
+              inputMode="numeric"
               name="giftNumCopies"
-              min={1}
-              value={giftNumCopies}
-              onChange={(e) => setGiftNumCopies(parseInt(e.target.value) || 1)}
+              value={giftNumCopiesInput}
+              onChange={(e) => {
+                const digits = e.target.value.replace(/\D/g, "");
+                setGiftNumCopiesInput(digits);
+              }}
+              onBlur={() => {
+                const parsed = parseInt(giftNumCopiesInput, 10);
+                setGiftNumCopiesInput(String(Number.isFinite(parsed) && parsed >= 1 ? parsed : 1));
+              }}
+              onStep={(delta) => setGiftNumCopiesInput(String(Math.max(1, giftNumCopies + delta)))}
+              disableDecrement={giftNumCopies <= 1}
             />
 
             <div className="space-y-3 pt-6 border-t-[1.5px] border-[#D2D8E8] text-sm sm:text-base font-medium 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type ModalType = "get-copy" | "gift-copy" | "partner" | "school" | "donate" | null;
 
@@ -17,6 +17,17 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
 
   const openModal = (type: ModalType) => setActiveModal(type);
   const closeModal = () => setActiveModal(null);
+
+  // Close any open modal if the browser restores the page from bfcache (e.g. cancelling Paystack on mobile)
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        setActiveModal(null);
+      }
+    };
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, []);
 
   return (
     <ModalContext.Provider value={{ activeModal, openModal, closeModal }}>
