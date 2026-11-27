@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import type { ApiSubmitResult } from "@/lib/api";
 
 interface FormWrapperProps {
@@ -28,6 +28,37 @@ export default function FormWrapper({
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [honeypot, setHoneypot] = useState("");
+  const redirectedRef = useRef(false);
+
+  // Reset submitting state if user navigates back from Paystack (bfcache or tab return)
+  useEffect(() => {
+    const resetSubmitting = () => {
+      if (redirectedRef.current) {
+        redirectedRef.current = false;
+        setIsSubmitting(false);
+      }
+    };
+
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted || redirectedRef.current) {
+        redirectedRef.current = false;
+        setIsSubmitting(false);
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        resetSubmitting();
+      }
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,6 +84,7 @@ export default function FormWrapper({
       }
 
       if (result.redirectUrl) {
+        redirectedRef.current = true;
         window.location.assign(result.redirectUrl);
         return;
       }

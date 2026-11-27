@@ -159,18 +159,18 @@ function PaymentCallbackContent() {
 
   if (state.kind === "error") {
     return (
-      <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-4 md:p-16">
-        <div className="w-full h-full max-w-65 md:max-w-169.5">
+      <main className="h-dvh min-h-[560px] overflow-y-auto flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-10 items-center justify-center py-5 px-4 md:py-10 md:px-14">
+        <div className="w-full flex-1 min-h-0 md:flex-none flex items-center justify-center max-w-[180px] sm:max-w-[220px] md:max-w-[420px] lg:max-w-[480px] max-h-[28dvh] sm:max-h-[32dvh] md:max-h-[70dvh]">
           <Image
             src="/payment-failed.png"
             alt="Verification issue"
             width={1000}
             height={1000}
-            className="w-full object-center object-cover"
+            className="w-auto h-auto max-w-full max-h-full object-contain"
             priority
           />
         </div>
-        <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+        <div className="w-full md:max-w-149.5 shrink-0 flex flex-col items-center md:items-start gap-3 sm:gap-4 md:gap-5 text-center md:text-start">
           <h1 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
             We couldn&apos;t confirm that payment.
           </h1>
@@ -215,19 +215,19 @@ function PaymentCallbackContent() {
   // 1. Donation success (matches /donation/success)
   if (isDonation) {
     return (
-      <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-3 md:p-16">
-        <div className="w-full h-full max-w-65 md:max-w-169.5">
+      <main className="h-dvh min-h-[560px] overflow-y-auto flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-10 items-center justify-center py-5 px-4 md:py-10 md:px-14">
+        <div className="w-full flex-1 min-h-0 md:flex-none flex items-center justify-center max-w-[180px] sm:max-w-[220px] md:max-w-[420px] lg:max-w-[480px] max-h-[28dvh] sm:max-h-[32dvh] md:max-h-[70dvh]">
           <Image
             src="/donation-success.png"
             alt="donation success"
             width={1000}
             height={1000}
-            className="w-full object-center object-cover"
+            className="w-auto h-auto max-w-full max-h-full object-contain"
             priority
           />
         </div>
 
-        <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+        <div className="w-full md:max-w-149.5 shrink-0 flex flex-col items-center md:items-start gap-3 sm:gap-4 md:gap-5 text-center md:text-start">
           <h2 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
             Thank you for backing the next volume.
           </h2>
@@ -289,19 +289,19 @@ function PaymentCallbackContent() {
   // 2. Purchase success (matches /order, with extra gift rows if copiesToGift > 0)
   if (copiesForMe > 0) {
     return (
-      <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-3 md:p-16">
-        <div className="w-full h-full max-w-65 md:max-w-169.5">
+      <main className="h-dvh min-h-[560px] overflow-y-auto flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-10 items-center justify-center py-5 px-4 md:py-10 md:px-14">
+        <div className="w-full flex-1 min-h-0 md:flex-none flex items-center justify-center max-w-[180px] sm:max-w-[220px] md:max-w-[420px] lg:max-w-[480px] max-h-[28dvh] sm:max-h-[32dvh] md:max-h-[70dvh]">
           <Image
             src="/order.png"
             alt="order"
             width={1000}
             height={1000}
-            className="w-full object-center object-cover"
+            className="w-auto h-auto max-w-full max-h-full object-contain"
             priority
           />
         </div>
 
-        <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+        <div className="w-full md:max-w-149.5 shrink-0 flex flex-col items-center md:items-start gap-3 sm:gap-4 md:gap-5 text-center md:text-start">
           <h2 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
             Thank you for your order.
           </h2>
@@ -388,19 +388,19 @@ function PaymentCallbackContent() {
 
   // 3. Gift-only order (matches /order/gift)
   return (
-    <main className="min-h-screen flex flex-col md:flex-row gap-9 items-center justify-center py-8 px-4 md:p-16">
-      <div className="w-full h-full max-w-65 md:max-w-169.5">
+    <main className="h-dvh min-h-[560px] overflow-y-auto flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-10 items-center justify-center py-5 px-4 md:py-10 md:px-14">
+      <div className="w-full flex-1 min-h-0 md:flex-none flex items-center justify-center max-w-[180px] sm:max-w-[220px] md:max-w-[420px] lg:max-w-[480px] max-h-[28dvh] sm:max-h-[32dvh] md:max-h-[70dvh]">
         <Image
           src="/order-gift.png"
           alt="order"
           width={1000}
           height={1000}
-          className="w-full object-center object-cover"
+          className="w-auto h-auto max-w-full max-h-full object-contain"
           priority
         />
       </div>
 
-      <div className="w-full md:max-w-149.5 flex flex-col items-center md:items-start gap-5 md:gap-6 text-center md:text-start">
+      <div className="w-full md:max-w-149.5 shrink-0 flex flex-col items-center md:items-start gap-3 sm:gap-4 md:gap-5 text-center md:text-start">
         <h2 className="text-dark text-[28px] md:text-[56px] font-fredoka font-bold leading-[110%]">
           Thank you for your order.
         </h2>

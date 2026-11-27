@@ -16,11 +16,13 @@ interface GiftCopyModalProps {
 }
 
 export default function GiftCopyModal({ isOpen, onClose }: GiftCopyModalProps) {
-  const [numCopies, setNumCopies] = useState<number>(1);
+  const [numCopiesInput, setNumCopiesInput] = useState<string>("1");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [agreedPrivacy, setAgreedPrivacy] = useState(false);
+
+  const numCopies = Math.max(1, parseInt(numCopiesInput, 10) || 1);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const idempotencyKeyRef = useRef<string>("");
@@ -82,11 +84,20 @@ export default function GiftCopyModal({ isOpen, onClose }: GiftCopyModalProps) {
         <FormInput
           label="Number of Copies"
           required
-          type="number"
+          type="text"
+          inputMode="numeric"
           name="giftNumCopies"
-          min={1}
-          value={numCopies}
-          onChange={(e) => setNumCopies(parseInt(e.target.value) || 1)}
+          value={numCopiesInput}
+          onChange={(e) => {
+            const digits = e.target.value.replace(/\D/g, "");
+            setNumCopiesInput(digits);
+          }}
+          onBlur={() => {
+            const parsed = parseInt(numCopiesInput, 10);
+            setNumCopiesInput(String(Number.isFinite(parsed) && parsed >= 1 ? parsed : 1));
+          }}
+          onStep={(delta) => setNumCopiesInput(String(Math.max(1, numCopies + delta)))}
+          disableDecrement={numCopies <= 1}
         />
 
         <FormInput
